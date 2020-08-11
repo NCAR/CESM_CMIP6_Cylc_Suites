@@ -3,7 +3,7 @@ This repository contains the Cylc workflow suite files that were used to execute
 
 These Cylc suites were created by the following individuals and credit should be given with use of any of these files.
 
-| Author |
+| Authors |
 | ------ |
 | Sheri Mickelson |
 | Altuntas, Alper |
