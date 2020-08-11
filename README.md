@@ -5,7 +5,7 @@ These Cylc suites were created by the following individuals and credit should be
 
 | Authors |
 | ------ |
-| Sheri Mickelson |
+| Mickelson, Sheri |
 | Altuntas, Alper |
 | Bertini, Alice |
 | Benedict, Jim |
