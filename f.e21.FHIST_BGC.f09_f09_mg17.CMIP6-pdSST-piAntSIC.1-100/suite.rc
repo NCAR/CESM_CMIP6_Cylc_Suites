@@ -1,0 +1,247 @@
+#!Jinja2
+
+{% set dates01 = ['001', '002', '003', '004', '005', '006', '007', '008', '009', '010'] %} 
+{% set dates02 = ['011', '012', '013', '014', '015', '016', '017', '018', '019', '020'] %} 
+{% set dates03 = ['021', '022', '023', '024', '025', '026', '027', '028', '029', '030'] %} 
+{% set dates04 = ['031', '032', '033', '034', '035', '036', '037', '038', '039', '040'] %} 
+{% set dates05 = ['041', '042', '043', '044', '045', '046', '047', '048', '049', '050'] %} 
+{% set dates06 = ['051', '052', '053', '054', '055', '056', '057', '058', '059', '060'] %} 
+{% set dates07 = ['061', '062', '063', '064', '065', '066', '067', '068', '069', '070'] %} 
+{% set dates08 = ['071', '072', '073', '074', '075', '076', '077', '078', '079', '080'] %} 
+{% set dates09 = ['081', '082', '083', '084', '085', '086', '087', '088', '089', '090'] %} 
+{% set dates10 = ['091', '092', '093', '094', '095', '096', '097', '098', '099', '100'] %}
+
+{% set all_dates = ['001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011', '012', '013', '014', '015', '016', '017', '018', '019', '020', '021', '022', '023', '024', '025', '026', '027', '028', '029', '030', '031', '032', '033', '034', '035', '036', '037', '038', '039', '040', '041', '042', '043', '044', '045', '046', '047', '048', '049', '050', '051', '052', '053', '054', '055', '056', '057', '058', '059', '060', '061', '062', '063', '064', '065', '066', '067', '068', '069', '070', '071', '072', '073', '074', '075', '076', '077', '078', '079', '080', '081', '082', '083', '084', '085', '086', '087', '088', '089', '090', '091', '092', '093', '094', '095', '096', '097', '098', '099', '100'] %}
+
+{% set start = '2001-05-31' %}
+
+[cylc]
+    [[environment]]
+        MAIL_ADDRESS=lantaosun.info@gmail.com,mickelso@ucar.edu,expdb@cgd.ucar.edu
+    [[event hooks]]
+        shutdown handler = cylc email-suite
+
+[scheduling]
+    [[dependencies]]
+        graph = """
+        
+        {% for J in dates01 %}
+           case_build_{{start}}__{{J}} => case_run_{{start}}__{{J}} => case_st_archive_{{start}}__{{J}} => timeseriesL_{{start}}__{{J}} => trim_slices_{{start}}__{{J}} => xconform_{{start}}__{{J}}
+        {% endfor %}
+        {% for J in dates01 %}
+        {% if loop.index0+1 < dates01|length %}
+            xconform_{{start}}__{{J}} => case_build_{{start}}__{{dates01[loop.index0+1]}}
+        {% endif %}
+        {% endfor %}
+
+        {% for J in dates02 %}
+           case_build_{{start}}__{{J}} => case_run_{{start}}__{{J}} => case_st_archive_{{start}}__{{J}} => timeseriesL_{{start}}__{{J}} => trim_slices_{{start}}__{{J}} => xconform_{{start}}__{{J}} 
+        {% endfor %}
+        {% for J in dates02 %}
+        {% if loop.index0+1 < dates02|length %}
+            xconform_{{start}}__{{J}} => case_build_{{start}}__{{dates02[loop.index0+1]}}
+        {% endif %}
+        {% endfor %}
+
+        {% for J in dates03 %}
+           case_build_{{start}}__{{J}} => case_run_{{start}}__{{J}} => case_st_archive_{{start}}__{{J}} => timeseriesL_{{start}}__{{J}} => trim_slices_{{start}}__{{J}} => xconform_{{start}}__{{J}} 
+        {% endfor %}
+        {% for J in dates03 %}
+        {% if loop.index0+1 < dates03|length %}
+            xconform_{{start}}__{{J}} => case_build_{{start}}__{{dates03[loop.index0+1]}}
+        {% endif %}
+        {% endfor %}
+
+        {% for J in dates04 %}
+           case_build_{{start}}__{{J}} => case_run_{{start}}__{{J}} => case_st_archive_{{start}}__{{J}} => timeseriesL_{{start}}__{{J}} => trim_slices_{{start}}__{{J}} => xconform_{{start}}__{{J}} 
+        {% endfor %}
+        {% for J in dates04 %}
+        {% if loop.index0+1 < dates04|length %}
+            xconform_{{start}}__{{J}} => case_build_{{start}}__{{dates04[loop.index0+1]}}
+        {% endif %}
+        {% endfor %}
+
+        {% for J in dates05 %}
+           case_build_{{start}}__{{J}} => case_run_{{start}}__{{J}} => case_st_archive_{{start}}__{{J}} => timeseriesL_{{start}}__{{J}} => trim_slices_{{start}}__{{J}} => xconform_{{start}}__{{J}} 
+        {% endfor %}
+        {% for J in dates05 %}
+        {% if loop.index0+1 < dates05|length %}
+            xconform_{{start}}__{{J}} => case_build_{{start}}__{{dates05[loop.index0+1]}}
+        {% endif %}
+        {% endfor %}
+
+        {% for J in dates06 %}
+           case_build_{{start}}__{{J}} => case_run_{{start}}__{{J}} => case_st_archive_{{start}}__{{J}} => timeseriesL_{{start}}__{{J}} => trim_slices_{{start}}__{{J}} => xconform_{{start}}__{{J}} 
+        {% endfor %}
+        {% for J in dates06 %}
+        {% if loop.index0+1 < dates06|length %}
+            xconform_{{start}}__{{J}} => case_build_{{start}}__{{dates06[loop.index0+1]}}
+        {% endif %}
+        {% endfor %}
+
+        {% for J in dates07 %}
+           case_build_{{start}}__{{J}} => case_run_{{start}}__{{J}} => case_st_archive_{{start}}__{{J}} => timeseriesL_{{start}}__{{J}} => trim_slices_{{start}}__{{J}} => xconform_{{start}}__{{J}} 
+        {% endfor %}
+        {% for J in dates07 %}
+        {% if loop.index0+1 < dates07|length %}
+            xconform_{{start}}__{{J}} => case_build_{{start}}__{{dates07[loop.index0+1]}}
+        {% endif %}
+        {% endfor %}
+
+        {% for J in dates08 %}
+           case_build_{{start}}__{{J}} => case_run_{{start}}__{{J}} => case_st_archive_{{start}}__{{J}} => timeseriesL_{{start}}__{{J}} => trim_slices_{{start}}__{{J}} => xconform_{{start}}__{{J}} 
+        {% endfor %}
+        {% for J in dates08 %}
+        {% if loop.index0+1 < dates08|length %}
+            xconform_{{start}}__{{J}} => case_build_{{start}}__{{dates08[loop.index0+1]}}
+        {% endif %}
+        {% endfor %}
+
+        {% for J in dates09 %}
+           case_build_{{start}}__{{J}} => case_run_{{start}}__{{J}} => case_st_archive_{{start}}__{{J}} => timeseriesL_{{start}}__{{J}} => trim_slices_{{start}}__{{J}} => xconform_{{start}}__{{J}} 
+        {% endfor %}
+        {% for J in dates09 %}
+        {% if loop.index0+1 < dates09|length %}
+            xconform_{{start}}__{{J}} => case_build_{{start}}__{{dates09[loop.index0+1]}}
+        {% endif %}
+        {% endfor %}
+
+        {% for J in dates10 %}
+           case_build_{{start}}__{{J}} => case_run_{{start}}__{{J}} => case_st_archive_{{start}}__{{J}} => timeseriesL_{{start}}__{{J}} => trim_slices_{{start}}__{{J}} => xconform_{{start}}__{{J}} 
+        {% endfor %}
+        {% for J in dates10 %}
+        {% if loop.index0+1 < dates10|length %}
+            xconform_{{start}}__{{J}} => case_build_{{start}}__{{dates10[loop.index0+1]}}
+        {% endif %}
+        {% endfor %}
+
+        """
+
+
+[runtime]
+    [[root]]
+        [[[environment]]]
+            {% set CASEROOT = "/glade/work/cmip6/cases/PAMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-pdSST-piAntSIC/" %}
+            {% set BASENAME = "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-pdSST-piAntSIC." %}
+ 
+            {% for J in all_dates %}
+                [[case_build_{{start}}__{{J}}]]
+                    {% set d = CASEROOT+"/"+BASENAME+J %}
+                    script = cd {{d}}; {{d}}/case.build
+                [[[job]]]
+                    method = pbs
+                    execution time limit = PT2H
+                [[[directives]]]
+                    -r = n
+                    -j = oe
+                    -S = /bin/csh
+                    -l = select=1:ncpus=1:mpiprocs=1,inception=login
+                    -q = economy
+                    -A = CESM0005
+                [[[event hooks]]]
+                    started handler = cylc email-suite
+                    succeeded handler = cylc email-suite
+                    failed handler = cylc email-suite
+            {% endfor %}
+
+            {% for J in all_dates %}
+                [[case_run_{{start}}__{{J}}]]
+                    {% set d = CASEROOT+"/"+BASENAME+J %}
+                    script = cd {{d}}; {{d}}/case.run.cylc
+                [[[job]]]
+                    method = pbs
+                    execution time limit = PT12H
+                    execution retry delays = PT30S, PT120S, PT600S
+                [[[directives]]]
+                    -A = CESM0005
+                    -q = regular
+                    -N = f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-pdSST-piAntSIC 
+                    -r = n
+                    -j = oe
+                    -S = /bin/bash
+                    -l = select=30:ncpus=36:mpiprocs=12:ompthreads=3 
+                [[[event hooks]]]
+                    started handler = cylc email-suite
+                    succeeded handler = cylc email-suite
+                    failed handler = cylc email-suite
+            {% endfor %}
+
+            {% for J in all_dates %}
+                [[case_st_archive_{{start}}__{{J}}]]
+                    {% set d = CASEROOT+"/"+BASENAME+J %}
+                    script = cd {{d}}; {{d}}/case.st_archive.cylc
+                [[[job]]]
+                    method = pbs
+                    execution time limit = PT1H
+                [[[directives]]]
+                    -A = CESM0005
+                    -q = regular
+                    -N = f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-pdSST-piAntSIC 
+                    -r = n
+                    -j = oe
+                    -S = /bin/bash
+                    -l = select=1:mpiprocs=1:ompthreads=3
+                [[[event hooks]]]
+                    started handler = cylc email-suite
+                    succeeded handler = cylc email-suite
+                    failed handler = cylc email-suite
+            {% endfor %}
+
+            {% for J in all_dates %}
+                [[trim_slices_{{start}}__{{J}}]]
+                    {% set d = CASEROOT+"/"+BASENAME+J %}
+                    script = python /gpfs/u/home/cmip6/mickelso/trim_tslices/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-pdSST-piAntSIC_trim_slices.py {{J}} 
+                [[[job]]]
+                    method = pbs
+                    execution time limit = PT1H
+                [[[directives]]]
+                    -A = CESM0005
+                    -q = regular
+                    -N = trim_slices 
+                    -r = n
+                    -j = oe
+                    -S = /bin/bash
+                    -l = select=1:mpiprocs=1:ompthreads=1
+                [[[event hooks]]]
+                    started handler = cylc email-suite
+                    succeeded handler = cylc email-suite
+                    failed handler = cylc email-suite
+            {% endfor %}
+
+            {% for J in all_dates %}
+                [[timeseriesL_{{start}}__{{J}}]]
+                    {% set d = CASEROOT+"/"+BASENAME+J+"/postprocess/" %}
+                    script = cd {{d}}; {{d}}/timeseriesL
+                [[[job]]]
+                    method = pbs
+                    execution time limit = PT12H
+                [[[directives]]]
+                    -N = timeseries
+                    -q = regular
+                    -l = select=16:ncpus=9:mpiprocs=9
+                    -A = CESM0005
+                [[[event hooks]]]
+                    started handler = cylc email-suite
+                    succeeded handler = cylc email-suite
+                    failed handler = cylc email-suite
+            {% endfor %}
+
+            {% for J in all_dates %}
+                [[xconform_{{start}}__{{J}}]]
+                    {% set d = CASEROOT+"/"+BASENAME+J+"/postprocess/" %}
+                    script = cd {{d}}; {{d}}/xconform
+                [[[job]]]
+                    method = pbs
+                    execution time limit = PT12H
+                [[[directives]]]
+                    -N = xconform
+                    -q = regular
+                    -l = select=16:ncpus=4:mpiprocs=4
+                    -A = CESM0005
+                [[[event hooks]]]
+                    started handler = cylc email-suite
+                    succeeded handler = cylc email-suite
+                    failed handler = cylc email-suite
+            {% endfor %}
+
+

@@ -1,0 +1,14 @@
+{
+    "t.e21.T1850G.f09_g17_gl4.CMIP6-ism-piControl-self.001": {
+        "t.e21.T1850G.f09_g17_gl4.CMIP6-ism-piControl-self.001": [
+            "case_run_0301-01-01", 
+            "case_st_archive_0301-01-01", 
+            "timeseriesL_0301-01-01", 
+            "xconform_0301-01-01", 
+            "ocn_averages_0301-01-01", 
+            "ocn_diagnostics_0301-01-01", 
+            "ice_averages_0301-01-01", 
+            "ice_diagnostics_0301-01-01"
+        ]
+    }
+}

@@ -1,0 +1,432 @@
+#!Jinja2 
+{% set dates_atm_averages = ['1876-01-01', '1926-01-01', '1951-01-01', '1976-01-01', '2001-01-01', '2026-01-01', '2051-01-01', '2076-01-01', '2101-01-01'] %}
+{% set dates_atm_diagnostics = ['1876-01-01', '1926-01-01', '1951-01-01', '1976-01-01', '2001-01-01', '2026-01-01', '2051-01-01', '2076-01-01', '2101-01-01'] %}
+{% set dates_case_run = ['1853-01-01', '1856-01-01', '1859-01-01', '1862-01-01', '1865-01-01', '1868-01-01', '1871-01-01', '1874-01-01', '1877-01-01', '1880-01-01', '1883-01-01', '1886-01-01', '1889-01-01', '1892-01-01', '1895-01-01', '1898-01-01', '1901-01-01', '1904-01-01', '1907-01-01', '1910-01-01', '1913-01-01', '1916-01-01', '1919-01-01', '1922-01-01', '1925-01-01', '1928-01-01', '1931-01-01', '1934-01-01', '1937-01-01', '1940-01-01', '1943-01-01', '1946-01-01', '1949-01-01', '1952-01-01', '1955-01-01', '1958-01-01', '1961-01-01', '1964-01-01', '1967-01-01', '1970-01-01', '1973-01-01', '1976-01-01', '1979-01-01', '1982-01-01', '1985-01-01', '1988-01-01', '1991-01-01', '1994-01-01', '1997-01-01', '2000-01-01', '2003-01-01', '2006-01-01', '2009-01-01', '2012-01-01', '2015-01-01', '2018-01-01', '2021-01-01', '2024-01-01', '2027-01-01', '2030-01-01', '2033-01-01', '2036-01-01', '2039-01-01', '2042-01-01', '2045-01-01', '2048-01-01', '2051-01-01', '2054-01-01', '2057-01-01', '2060-01-01', '2063-01-01', '2066-01-01', '2069-01-01', '2072-01-01', '2075-01-01', '2078-01-01', '2081-01-01', '2084-01-01', '2087-01-01', '2090-01-01', '2093-01-01', '2096-01-01', '2099-01-01', '2102-01-01'] %}
+{% set dates_case_st_archive = ['1853-01-01', '1856-01-01', '1859-01-01', '1862-01-01', '1865-01-01', '1868-01-01', '1871-01-01', '1874-01-01', '1877-01-01', '1880-01-01', '1883-01-01', '1886-01-01', '1889-01-01', '1892-01-01', '1895-01-01', '1898-01-01', '1901-01-01', '1904-01-01', '1907-01-01', '1910-01-01', '1913-01-01', '1916-01-01', '1919-01-01', '1922-01-01', '1925-01-01', '1928-01-01', '1931-01-01', '1934-01-01', '1937-01-01', '1940-01-01', '1943-01-01', '1946-01-01', '1949-01-01', '1952-01-01', '1955-01-01', '1958-01-01', '1961-01-01', '1964-01-01', '1967-01-01', '1970-01-01', '1973-01-01', '1976-01-01', '1979-01-01', '1982-01-01', '1985-01-01', '1988-01-01', '1991-01-01', '1994-01-01', '1997-01-01', '2000-01-01', '2003-01-01', '2006-01-01', '2009-01-01', '2012-01-01', '2015-01-01', '2018-01-01', '2021-01-01', '2024-01-01', '2027-01-01', '2030-01-01', '2033-01-01', '2036-01-01', '2039-01-01', '2042-01-01', '2045-01-01', '2048-01-01', '2051-01-01', '2054-01-01', '2057-01-01', '2060-01-01', '2063-01-01', '2066-01-01', '2069-01-01', '2072-01-01', '2075-01-01', '2078-01-01', '2081-01-01', '2084-01-01', '2087-01-01', '2090-01-01', '2093-01-01', '2096-01-01', '2099-01-01', '2102-01-01'] %}
+{% set dates_lnd_averages = ['1876-01-01', '1926-01-01', '1951-01-01', '1976-01-01', '2001-01-01', '2026-01-01', '2051-01-01', '2076-01-01', '2101-01-01'] %}
+{% set dates_lnd_diagnostics = ['1876-01-01', '1926-01-01', '1951-01-01', '1976-01-01', '2001-01-01', '2026-01-01', '2051-01-01', '2076-01-01', '2101-01-01'] %}
+{% set dates_ocn_averages = ['0011-01-01'] %}
+{% set dates_ocn_diagnostics = ['0011-01-01'] %}
+{% set dates_timeseriesL = ['2102-01-01'] %}
+{% set dates_xconform = ['2102-01-01'] %}
+{% set ATMDIAG_test_first_yr = [1850,1975,1900,1925,1950,1975,2000,2025,2050,2075] %}
+{% set ATMDIAG_test_nyrs = [25,25,25,25,25,25,25,25,25,25] %}
+{% set OCNDIAG_YEAR0 = [1] %}
+{% set OCNDIAG_YEAR1 = [10] %}
+{% set OCNDIAG_TSERIES_YEAR0 = [1] %}
+{% set OCNDIAG_TSERIES_YEAR1 = [10] %}
+{% set LNDDIAG_clim_first_yr_1 = [1850,1975,1900,1925,1950,1975,2000,2025,2050,2075] %}
+{% set LNDDIAG_trends_first_yr_1 = [1850,1975,1900,1925,1950,1975,2000,2025,2050,2075] %}
+{% set LNDDIAG_clim_num_yrs_1 = [25,25,25,25,25,25,25,25,25,25] %}
+{% set LNDDIAG_trends_num_yrs_1 = [25,25,25,25,25,25,25,25,25,25] %}
+{% set ICEDIAG_BEGYR_DIFF = [] %}
+{% set ICEDIAG_ENDYR_DIFF = [] %}
+{% set ICEDIAG_BEGYR_CONT = [] %}
+{% set ICEDIAG_ENDYR_CONT = [] %}
+{% set ICEDIAG_YRS_TO_AVG = [] %}
+title = f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001 workflow 
+[cylc]
+    [[environment]]
+        MAIL_ADDRESS=hannay@ucar.edu,mickelso@ucar.edu,expdb@cgd.ucar.edu
+    [[event hooks]]
+        shutdown handler = cylc email-suite
+[scheduling]
+    [[dependencies]]
+        graph = """
+                    case_run_1853-01-01 => case_st_archive_1853-01-01
+                    case_st_archive_1853-01-01 => ocn_averages_0011-01-01 & case_run_1856-01-01
+                    ocn_averages_0011-01-01 => ocn_diagnostics_0011-01-01 => ocn_diagnostics_0011-01-01_post
+                    case_run_1856-01-01 => case_st_archive_1856-01-01
+                    case_st_archive_1856-01-01 => case_run_1859-01-01
+                    case_run_1859-01-01 => case_st_archive_1859-01-01
+                    case_st_archive_1859-01-01 => case_run_1862-01-01
+                    case_run_1862-01-01 => case_st_archive_1862-01-01
+                    case_st_archive_1862-01-01 => case_run_1865-01-01
+                    case_run_1865-01-01 => case_st_archive_1865-01-01
+                    case_st_archive_1865-01-01 => case_run_1868-01-01
+                    case_run_1868-01-01 => case_st_archive_1868-01-01
+                    case_st_archive_1868-01-01 => case_run_1871-01-01
+                    case_run_1871-01-01 => case_st_archive_1871-01-01
+                    case_st_archive_1871-01-01 => case_run_1874-01-01
+                    case_run_1874-01-01 => case_st_archive_1874-01-01
+                    case_st_archive_1874-01-01 => case_run_1877-01-01
+                    case_run_1877-01-01 => case_st_archive_1877-01-01
+                    case_st_archive_1877-01-01 => atm_averages_1876-01-01 & lnd_averages_1876-01-01 & case_run_1880-01-01
+                    atm_averages_1876-01-01 => atm_diagnostics_1876-01-01 => atm_diagnostics_1876-01-01_post
+                    lnd_averages_1876-01-01 => lnd_diagnostics_1876-01-01 => lnd_diagnostics_1876-01-01_post
+                    case_run_1880-01-01 => case_st_archive_1880-01-01
+                    case_st_archive_1880-01-01 => case_run_1883-01-01
+                    case_run_1883-01-01 => case_st_archive_1883-01-01
+                    case_st_archive_1883-01-01 => case_run_1886-01-01
+                    case_run_1886-01-01 => case_st_archive_1886-01-01
+                    case_st_archive_1886-01-01 => case_run_1889-01-01
+                    case_run_1889-01-01 => case_st_archive_1889-01-01
+                    case_st_archive_1889-01-01 => case_run_1892-01-01
+                    case_run_1892-01-01 => case_st_archive_1892-01-01
+                    case_st_archive_1892-01-01 => case_run_1895-01-01
+                    case_run_1895-01-01 => case_st_archive_1895-01-01
+                    case_st_archive_1895-01-01 => case_run_1898-01-01
+                    case_run_1898-01-01 => case_st_archive_1898-01-01
+                    case_st_archive_1898-01-01 => case_run_1901-01-01
+                    case_run_1901-01-01 => case_st_archive_1901-01-01
+                    case_st_archive_1901-01-01 => case_run_1904-01-01
+                    case_run_1904-01-01 => case_st_archive_1904-01-01
+                    case_st_archive_1904-01-01 => case_run_1907-01-01
+                    case_run_1907-01-01 => case_st_archive_1907-01-01
+                    case_st_archive_1907-01-01 => case_run_1910-01-01
+                    case_run_1910-01-01 => case_st_archive_1910-01-01
+                    case_st_archive_1910-01-01 => case_run_1913-01-01
+                    case_run_1913-01-01 => case_st_archive_1913-01-01
+                    case_st_archive_1913-01-01 => case_run_1916-01-01
+                    case_run_1916-01-01 => case_st_archive_1916-01-01
+                    case_st_archive_1916-01-01 => case_run_1919-01-01
+                    case_run_1919-01-01 => case_st_archive_1919-01-01
+                    case_st_archive_1919-01-01 => case_run_1922-01-01
+                    case_run_1922-01-01 => case_st_archive_1922-01-01
+                    case_st_archive_1922-01-01 => case_run_1925-01-01
+                    case_run_1925-01-01 => case_st_archive_1925-01-01
+                    case_st_archive_1925-01-01 => case_run_1928-01-01
+                    case_run_1928-01-01 => case_st_archive_1928-01-01
+                    case_st_archive_1928-01-01 => atm_averages_1926-01-01 & lnd_averages_1926-01-01 & case_run_1931-01-01
+                    atm_averages_1926-01-01 => atm_diagnostics_1926-01-01 => atm_diagnostics_1926-01-01_post
+                    lnd_averages_1926-01-01 => lnd_diagnostics_1926-01-01 => lnd_diagnostics_1926-01-01_post
+                    case_run_1931-01-01 => case_st_archive_1931-01-01
+                    case_st_archive_1931-01-01 => case_run_1934-01-01
+                    case_run_1934-01-01 => case_st_archive_1934-01-01
+                    case_st_archive_1934-01-01 => case_run_1937-01-01
+                    case_run_1937-01-01 => case_st_archive_1937-01-01
+                    case_st_archive_1937-01-01 => case_run_1940-01-01
+                    case_run_1940-01-01 => case_st_archive_1940-01-01
+                    case_st_archive_1940-01-01 => case_run_1943-01-01
+                    case_run_1943-01-01 => case_st_archive_1943-01-01
+                    case_st_archive_1943-01-01 => case_run_1946-01-01
+                    case_run_1946-01-01 => case_st_archive_1946-01-01
+                    case_st_archive_1946-01-01 => case_run_1949-01-01
+                    case_run_1949-01-01 => case_st_archive_1949-01-01
+                    case_st_archive_1949-01-01 => case_run_1952-01-01
+                    case_run_1952-01-01 => case_st_archive_1952-01-01
+                    case_st_archive_1952-01-01 => atm_averages_1951-01-01 & lnd_averages_1951-01-01 & case_run_1955-01-01
+                    atm_averages_1951-01-01 => atm_diagnostics_1951-01-01 => atm_diagnostics_1951-01-01_post
+                    lnd_averages_1951-01-01 => lnd_diagnostics_1951-01-01 => lnd_diagnostics_1951-01-01_post
+                    case_run_1955-01-01 => case_st_archive_1955-01-01
+                    case_st_archive_1955-01-01 => case_run_1958-01-01
+                    case_run_1958-01-01 => case_st_archive_1958-01-01
+                    case_st_archive_1958-01-01 => case_run_1961-01-01
+                    case_run_1961-01-01 => case_st_archive_1961-01-01
+                    case_st_archive_1961-01-01 => case_run_1964-01-01
+                    case_run_1964-01-01 => case_st_archive_1964-01-01
+                    case_st_archive_1964-01-01 => case_run_1967-01-01
+                    case_run_1967-01-01 => case_st_archive_1967-01-01
+                    case_st_archive_1967-01-01 => case_run_1970-01-01
+                    case_run_1970-01-01 => case_st_archive_1970-01-01
+                    case_st_archive_1970-01-01 => case_run_1973-01-01
+                    case_run_1973-01-01 => case_st_archive_1973-01-01
+                    case_st_archive_1973-01-01 => case_run_1976-01-01
+                    case_run_1976-01-01 => case_st_archive_1976-01-01
+                    case_st_archive_1976-01-01 => atm_averages_1976-01-01 & lnd_averages_1976-01-01 & case_run_1979-01-01
+                    atm_averages_1976-01-01 => atm_diagnostics_1976-01-01 => atm_diagnostics_1976-01-01_post
+                    lnd_averages_1976-01-01 => lnd_diagnostics_1976-01-01 => lnd_diagnostics_1976-01-01_post
+                    case_run_1979-01-01 => case_st_archive_1979-01-01
+                    case_st_archive_1979-01-01 => case_run_1982-01-01
+                    case_run_1982-01-01 => case_st_archive_1982-01-01
+                    case_st_archive_1982-01-01 => case_run_1985-01-01
+                    case_run_1985-01-01 => case_st_archive_1985-01-01
+                    case_st_archive_1985-01-01 => case_run_1988-01-01
+                    case_run_1988-01-01 => case_st_archive_1988-01-01
+                    case_st_archive_1988-01-01 => case_run_1991-01-01
+                    case_run_1991-01-01 => case_st_archive_1991-01-01
+                    case_st_archive_1991-01-01 => case_run_1994-01-01
+                    case_run_1994-01-01 => case_st_archive_1994-01-01
+                    case_st_archive_1994-01-01 => case_run_1997-01-01
+                    case_run_1997-01-01 => case_st_archive_1997-01-01
+                    case_st_archive_1997-01-01 => case_run_2000-01-01
+                    case_run_2000-01-01 => case_st_archive_2000-01-01
+                    case_st_archive_2000-01-01 => case_run_2003-01-01
+                    case_run_2003-01-01 => case_st_archive_2003-01-01
+                    case_st_archive_2003-01-01 => atm_averages_2001-01-01 & lnd_averages_2001-01-01 & case_run_2006-01-01
+                    atm_averages_2001-01-01 => atm_diagnostics_2001-01-01 => atm_diagnostics_2001-01-01_post
+                    lnd_averages_2001-01-01 => lnd_diagnostics_2001-01-01 => lnd_diagnostics_2001-01-01_post
+                    case_run_2006-01-01 => case_st_archive_2006-01-01
+                    case_st_archive_2006-01-01 => case_run_2009-01-01
+                    case_run_2009-01-01 => case_st_archive_2009-01-01
+                    case_st_archive_2009-01-01 => case_run_2012-01-01
+                    case_run_2012-01-01 => case_st_archive_2012-01-01
+                    case_st_archive_2012-01-01 => case_run_2015-01-01
+                    case_run_2015-01-01 => case_st_archive_2015-01-01
+                    case_st_archive_2015-01-01 => case_run_2018-01-01
+                    case_run_2018-01-01 => case_st_archive_2018-01-01
+                    case_st_archive_2018-01-01 => case_run_2021-01-01
+                    case_run_2021-01-01 => case_st_archive_2021-01-01
+                    case_st_archive_2021-01-01 => case_run_2024-01-01
+                    case_run_2024-01-01 => case_st_archive_2024-01-01
+                    case_st_archive_2024-01-01 => case_run_2027-01-01
+                    case_run_2027-01-01 => case_st_archive_2027-01-01
+                    case_st_archive_2027-01-01 => atm_averages_2026-01-01 & lnd_averages_2026-01-01 & case_run_2030-01-01
+                    atm_averages_2026-01-01 => atm_diagnostics_2026-01-01 => atm_diagnostics_2026-01-01_post
+                    lnd_averages_2026-01-01 => lnd_diagnostics_2026-01-01 => lnd_diagnostics_2026-01-01_post
+                    case_run_2030-01-01 => case_st_archive_2030-01-01
+                    case_st_archive_2030-01-01 => case_run_2033-01-01
+                    case_run_2033-01-01 => case_st_archive_2033-01-01
+                    case_st_archive_2033-01-01 => case_run_2036-01-01
+                    case_run_2036-01-01 => case_st_archive_2036-01-01
+                    case_st_archive_2036-01-01 => case_run_2039-01-01
+                    case_run_2039-01-01 => case_st_archive_2039-01-01
+                    case_st_archive_2039-01-01 => case_run_2042-01-01
+                    case_run_2042-01-01 => case_st_archive_2042-01-01
+                    case_st_archive_2042-01-01 => case_run_2045-01-01
+                    case_run_2045-01-01 => case_st_archive_2045-01-01
+                    case_st_archive_2045-01-01 => case_run_2048-01-01
+                    case_run_2048-01-01 => case_st_archive_2048-01-01
+                    case_st_archive_2048-01-01 => case_run_2051-01-01
+                    case_run_2051-01-01 => case_st_archive_2051-01-01
+                    case_st_archive_2051-01-01 => atm_averages_2051-01-01 & lnd_averages_2051-01-01 & case_run_2054-01-01
+                    atm_averages_2051-01-01 => atm_diagnostics_2051-01-01 => atm_diagnostics_2051-01-01_post
+                    lnd_averages_2051-01-01 => lnd_diagnostics_2051-01-01 => lnd_diagnostics_2051-01-01_post
+                    case_run_2054-01-01 => case_st_archive_2054-01-01
+                    case_st_archive_2054-01-01 => case_run_2057-01-01
+                    case_run_2057-01-01 => case_st_archive_2057-01-01
+                    case_st_archive_2057-01-01 => case_run_2060-01-01
+                    case_run_2060-01-01 => case_st_archive_2060-01-01
+                    case_st_archive_2060-01-01 => case_run_2063-01-01
+                    case_run_2063-01-01 => case_st_archive_2063-01-01
+                    case_st_archive_2063-01-01 => case_run_2066-01-01
+                    case_run_2066-01-01 => case_st_archive_2066-01-01
+                    case_st_archive_2066-01-01 => case_run_2069-01-01
+                    case_run_2069-01-01 => case_st_archive_2069-01-01
+                    case_st_archive_2069-01-01 => case_run_2072-01-01
+                    case_run_2072-01-01 => case_st_archive_2072-01-01
+                    case_st_archive_2072-01-01 => case_run_2075-01-01
+                    case_run_2075-01-01 => case_st_archive_2075-01-01
+                    case_st_archive_2075-01-01 => case_run_2078-01-01
+                    case_run_2078-01-01 => case_st_archive_2078-01-01
+                    case_st_archive_2078-01-01 => atm_averages_2076-01-01 & lnd_averages_2076-01-01 & case_run_2081-01-01
+                    atm_averages_2076-01-01 => atm_diagnostics_2076-01-01 => atm_diagnostics_2076-01-01_post
+                    lnd_averages_2076-01-01 => lnd_diagnostics_2076-01-01 => lnd_diagnostics_2076-01-01_post
+                    case_run_2081-01-01 => case_st_archive_2081-01-01
+                    case_st_archive_2081-01-01 => case_run_2084-01-01
+                    case_run_2084-01-01 => case_st_archive_2084-01-01
+                    case_st_archive_2084-01-01 => case_run_2087-01-01
+                    case_run_2087-01-01 => case_st_archive_2087-01-01
+                    case_st_archive_2087-01-01 => case_run_2090-01-01
+                    case_run_2090-01-01 => case_st_archive_2090-01-01
+                    case_st_archive_2090-01-01 => case_run_2093-01-01
+                    case_run_2093-01-01 => case_st_archive_2093-01-01
+                    case_st_archive_2093-01-01 => case_run_2096-01-01
+                    case_run_2096-01-01 => case_st_archive_2096-01-01
+                    case_st_archive_2096-01-01 => case_run_2099-01-01
+                    case_run_2099-01-01 => case_st_archive_2099-01-01
+                    case_st_archive_2099-01-01 => case_run_2102-01-01
+                    case_run_2102-01-01 => case_st_archive_2102-01-01
+                    case_st_archive_2102-01-01 => timeseriesL_2102-01-01 & atm_averages_2101-01-01 & lnd_averages_2101-01-01
+                    timeseriesL_2102-01-01 => xconform_2102-01-01
+                    atm_averages_2101-01-01 => atm_diagnostics_2101-01-01 => atm_diagnostics_2101-01-01_post
+                    lnd_averages_2101-01-01 => lnd_diagnostics_2101-01-01 => lnd_diagnostics_2101-01-01_post
+               """
+[runtime]
+    [[root]]
+        [[[environment]]]
+        {% for i in range(0,dates_atm_averages|length) %}
+        [[atm_averages_{{dates_atm_averages[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/; ./pp_config --set ATMDIAG_test_first_yr={{ATMDIAG_test_first_yr[i]}}; ./pp_config --set ATMDIAG_test_nyrs={{ATMDIAG_test_nyrs[i]}};  /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/atm_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_atm_diagnostics|length) %}
+        [[atm_diagnostics_{{dates_atm_diagnostics[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001; /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/atm_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_atm_diagnostics|length) %}
+        [[atm_diagnostics_{{dates_atm_diagnostics[i]}}_post ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/; /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_case_run|length) %}
+        [[case_run_{{dates_case_run[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001; /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/case.run.cylc
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+                execution retry delays = PT30S, PT120S, PT600S
+        [[[directives]]]
+                -A = P04010022 
+                -q = regular
+                -N = FHIST-all.001.run
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=96:ncpus=36:mpiprocs=12:ompthreads=3
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_case_st_archive|length) %}
+        [[case_st_archive_{{dates_case_st_archive[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001; /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/case.st_archive.cylc
+        [[[job]]]
+                method = pbs
+                execution time limit = PT1H
+        [[[directives]]]
+                -A = CESM0005
+                -q = regular
+                -N = f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001.st_archive
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=1:mpiprocs=1:ompthreads=3
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_lnd_averages|length) %}
+        [[lnd_averages_{{dates_lnd_averages[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/; ./pp_config --set LNDDIAG_clim_first_yr_1={{LNDDIAG_clim_first_yr_1[i]}}; ./pp_config --set LNDDIAG_trends_first_yr_1={{LNDDIAG_trends_first_yr_1[i]}}; ./pp_config --set LNDDIAG_clim_num_yrs_1={{LNDDIAG_clim_num_yrs_1[i]}}; ./pp_config --set LNDDIAG_trends_num_yrs_1={{LNDDIAG_trends_num_yrs_1[i]}};  /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/lnd_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_lnd_diagnostics|length) %}
+        [[lnd_diagnostics_{{dates_lnd_diagnostics[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001; /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/lnd_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=16:mpiprocs=16
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_lnd_diagnostics|length) %}
+        [[lnd_diagnostics_{{dates_lnd_diagnostics[i]}}_post ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/; /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_averages|length) %}
+        [[ocn_averages_{{dates_ocn_averages[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/; ./pp_config --set OCNDIAG_YEAR0={{OCNDIAG_YEAR0[i]}}; ./pp_config --set OCNDIAG_YEAR1={{OCNDIAG_YEAR1[i]}}; ./pp_config --set OCNDIAG_TSERIES_YEAR0={{OCNDIAG_TSERIES_YEAR0[i]}}; ./pp_config --set OCNDIAG_TSERIES_YEAR1={{OCNDIAG_TSERIES_YEAR1[i]}};  /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/ocn_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_diagnostics|length) %}
+        [[ocn_diagnostics_{{dates_ocn_diagnostics[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001; /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/ocn_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=16:mpiprocs=16
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_diagnostics|length) %}
+        [[ocn_diagnostics_{{dates_ocn_diagnostics[i]}}_post ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/; /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_timeseriesL|length) %}
+        [[timeseriesL_{{dates_timeseriesL[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001; /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/timeseriesL
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = timeseries
+                -q = regular
+                -l = select=16:ncpus=9:mpiprocs=9
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_xconform|length) %}
+        [[xconform_{{dates_xconform[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001; /gpfs/fs1/work/cmip6/cases/RFMIP/f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-histall.001/postprocess/xconform
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = xconform
+                -q = regular
+                -l = select=16:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+

@@ -1,0 +1,18 @@
+{
+    "i.e21.IHIST.f09_g17.CMIP6-land-hist-altStartYear.001": {
+        "i.e21.IHIST.f09_g17.CMIP6-land-hist-altStartYear.001": [
+            "case_run_1852-01-01", 
+            "case_st_archive_1852-01-01", 
+            "case_run_1854-01-01", 
+            "case_st_archive_1854-01-01", 
+            "case_run_1856-01-01", 
+            "case_st_archive_1856-01-01", 
+            "case_run_1858-01-01", 
+            "case_st_archive_1858-01-01", 
+            "case_run_1860-01-01", 
+            "case_st_archive_1860-01-01", 
+            "timeseriesL_1860-01-01", 
+            "xconform_1860-01-01"
+        ]
+    }
+}

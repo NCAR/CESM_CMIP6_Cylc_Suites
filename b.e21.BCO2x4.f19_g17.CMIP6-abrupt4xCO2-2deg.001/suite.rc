@@ -1,0 +1,336 @@
+#!Jinja2 
+{% set dates_atm_averages = ['0032-01-01', '0072-01-01', '0112-01-01'] %}
+{% set dates_atm_diagnostics = ['0032-01-01', '0072-01-01', '0112-01-01'] %}
+{% set dates_case_run = ['0011-01-01', '0021-01-01', '0031-01-01', '0041-01-01', '0051-01-01', '0061-01-01', '0071-01-01', '0081-01-01', '0091-01-01', '0101-01-01', '0111-01-01', '0121-01-01', '0131-01-01', '0141-01-01', '0151-01-01'] %}
+{% set dates_case_st_archive = ['0011-01-01', '0021-01-01', '0031-01-01', '0041-01-01', '0051-01-01', '0061-01-01', '0071-01-01',  '0081-01-01', '0091-01-01',  '0101-01-01', '0111-01-01', '0121-01-01', '0131-01-01', '0141-01-01', '0151-01-01'] %}
+{% set dates_ice_averages = ['0031-01-01', '0071-01-01', '0111-01-01', '0151-01-01'] %}
+{% set dates_ice_diagnostics = ['0031-01-01', '0071-01-01', '0111-01-01', '0151-01-01'] %}
+{% set dates_lnd_averages = ['0032-01-01', '0072-01-01', '0112-01-01'] %}
+{% set dates_lnd_diagnostics = ['0032-01-01', '0072-01-01', '0112-01-01'] %}
+{% set dates_ocn_averages = ['0031-01-01', '0071-01-01', '0111-01-01', '0151-01-01'] %}
+{% set dates_ocn_diagnostics = ['0031-01-01', '0071-01-01', '0111-01-01', '0151-01-01'] %}
+{% set dates_timeseriesL = ['0151-01-01'] %}
+{% set dates_xconform = ['0151-01-01'] %}
+{% set ATMDIAG_test_first_yr = [1,31,71,111] %}
+{% set ATMDIAG_test_nyrs = [30,40,40,40] %}
+{% set OCNDIAG_YEAR0 = [2,31,71,111] %}
+{% set OCNDIAG_YEAR1 = [30,70,110,150] %}
+{% set OCNDIAG_TSERIES_YEAR0 = [2,31,71,111] %}
+{% set OCNDIAG_TSERIES_YEAR1 = [30,70,110,150] %}
+{% set LNDDIAG_clim_first_yr_1 = [1,31,71,111] %}
+{% set LNDDIAG_trends_first_yr_1 = [1,31,71,111] %}
+{% set LNDDIAG_clim_num_yrs_1 = [30,40,40,40] %}
+{% set LNDDIAG_trends_num_yrs_1 = [30,40,40,40] %}
+{% set ICEDIAG_BEGYR_DIFF = [2,31,71,111] %}
+{% set ICEDIAG_ENDYR_DIFF = [30,70,110,150] %}
+{% set ICEDIAG_BEGYR_CONT = [2,31,71,111] %}
+{% set ICEDIAG_ENDYR_CONT = [30,70,110,150] %}
+{% set ICEDIAG_YRS_TO_AVG = [28,40,40,40] %}
+[meta] 
+title = b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001 workflow 
+[cylc]
+    [[environment]]
+        MAIL_ADDRESS=mmills@ucar.edu,mickelso@ucar.edu,expdb@cgd.ucar.edu
+    [[events]]
+        shutdown handler = cylc email-suite
+[scheduling]
+    [[dependencies]]
+        graph = """
+                    case_run_0011-01-01 => case_st_archive_0011-01-01
+                    case_st_archive_0011-01-01 => case_run_0021-01-01
+                    case_run_0021-01-01 => case_st_archive_0021-01-01
+                    case_st_archive_0021-01-01 => case_run_0031-01-01
+                    case_run_0031-01-01 => case_st_archive_0031-01-01
+                    case_st_archive_0031-01-01 => ocn_averages_0031-01-01 & ice_averages_0031-01-01 & case_run_0041-01-01
+                    ocn_averages_0031-01-01 => ocn_diagnostics_0031-01-01 => ocn_diagnostics_0041-01-01_post
+                    ice_averages_0031-01-01 => ice_diagnostics_0031-01-01 => ice_diagnostics_0041-01-01_post
+                    case_st_archive_0041-01-01 => atm_averages_0032-01-01 & lnd_averages_0032-01-01 & case_run_0051-01-01
+                    atm_averages_0032-01-01 => atm_diagnostics_0032-01-01 => atm_diagnostics_0032-01-01_post
+                    lnd_averages_0032-01-01 => lnd_diagnostics_0032-01-01 => lnd_diagnostics_0032-01-01_post
+                    case_run_0041-01-01 => case_st_archive_0041-01-01
+                    case_run_0051-01-01 => case_st_archive_0051-01-01
+                    case_st_archive_0051-01-01 => case_run_0061-01-01
+                    case_run_0061-01-01 => case_st_archive_0061-01-01
+                    case_st_archive_0061-01-01 => case_run_0071-01-01
+                    case_run_0071-01-01 => case_st_archive_0071-01-01
+                    case_st_archive_0071-01-01 => ocn_averages_0071-01-01 & ice_averages_0071-01-01 & case_run_0081-01-01
+                    ocn_averages_0071-01-01 => ocn_diagnostics_0071-01-01 => ocn_diagnostics_0071-01-01_post
+                    ice_averages_0071-01-01 => ice_diagnostics_0071-01-01 => ice_diagnostics_0071-01-01_post
+                    case_st_archive_0081-01-01 => atm_averages_0072-01-01 & lnd_averages_0072-01-01 & case_run_0091-01-01
+                    atm_averages_0072-01-01 => atm_diagnostics_0072-01-01 => atm_diagnostics_0072-01-01_post
+                    lnd_averages_0072-01-01 => lnd_diagnostics_0072-01-01 => lnd_diagnostics_0072-01-01_post
+                    case_run_0081-01-01 => case_st_archive_0081-01-01
+                    case_st_archive_0081-01-01 => case_run_0091-01-01
+                    case_run_0091-01-01 => case_st_archive_0091-01-01
+                    case_st_archive_0091-01-01 => case_run_0101-01-01
+                    case_run_0101-01-01 => case_st_archive_0101-01-01
+                    case_st_archive_0101-01-01 => case_run_0111-01-01
+                    case_run_0111-01-01 => case_st_archive_0111-01-01
+                    case_st_archive_0111-01-01 => ocn_averages_0111-01-01 & ice_averages_0111-01-01 & case_run_0121-01-01
+                    ocn_averages_0111-01-01 => ocn_diagnostics_0111-01-01 => ocn_diagnostics_0111-01-01_post
+                    ice_averages_0111-01-01 => ice_diagnostics_0111-01-01 => ice_diagnostics_0111-01-01_post
+                    case_run_0121-01-01 => case_st_archive_0121-01-01
+                    case_st_archive_0121-01-01 => atm_averages_0112-01-01 & lnd_averages_0112-01-01
+                    atm_averages_0112-01-01 => atm_diagnostics_0112-01-01 => atm_diagnostics_0112-01-01_post
+                    lnd_averages_0112-01-01 => lnd_diagnostics_0112-01-01 => lnd_diagnostics_0112-01-01_post
+                    case_st_archive_0121-01-01 => case_run_0131-01-01
+                    case_run_0131-01-01 => case_st_archive_0131-01-01
+                    case_st_archive_0131-01-01 => case_run_0141-01-01
+                    case_run_0141-01-01 => case_st_archive_0141-01-01
+                    case_st_archive_0141-01-01 => case_run_0151-01-01
+                    case_run_0151-01-01 => case_st_archive_0151-01-01
+                    case_st_archive_0151-01-01 => timeseriesL_0151-01-01 & ocn_averages_0151-01-01 & ice_averages_0151-01-01
+                    timeseriesL_0151-01-01 => xconform_0151-01-01
+                    ocn_averages_0151-01-01 => ocn_diagnostics_0151-01-01 => ocn_diagnostics_0151-01-01_post
+                    ice_averages_0151-01-01 => ice_diagnostics_0151-01-01 => ice_diagnostics_0151-01-01_post
+               """
+[runtime]
+    [[root]]
+        [[[environment]]]
+        {% for i in range(0,dates_atm_averages|length) %}
+        [[atm_averages_{{dates_atm_averages[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/; ./pp_config --set ATMDIAG_test_first_yr={{ATMDIAG_test_first_yr[i]}}; ./pp_config --set ATMDIAG_test_nyrs={{ATMDIAG_test_nyrs[i]}};  /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/atm_averages
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = economy
+                -l = select=4:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_atm_diagnostics|length) %}
+        [[atm_diagnostics_{{dates_atm_diagnostics[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001; /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/atm_diagnostics
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = economy 
+                -l = select=1:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_atm_diagnostics|length) %}
+        [[atm_diagnostics_{{dates_atm_diagnostics[i]}}_post ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/; /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_case_run|length) %}
+        [[case_run_{{dates_case_run[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001; /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/case.run.cylc
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+                execution retry delays = PT30S, PT120S, PT600S
+        [[[directives]]]
+                -A = CESM0005
+                -q = economy 
+                -N = 4xCO2-CESM2-BGC-2deg
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=65:ncpus=36:mpiprocs=36:ompthreads=1
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_case_st_archive|length) %}
+        [[case_st_archive_{{dates_case_st_archive[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001; /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/case.st_archive.cylc
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT1H
+        [[[directives]]]
+                -A = CESM0005
+                -q = economy 
+                -N = st_archive.b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=1:ncpus=1:mpiprocs=1:ompthreads=1
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ice_averages|length) %}
+        [[ice_averages_{{dates_ice_averages[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/; ./pp_config --set ICEDIAG_BEGYR_DIFF={{ICEDIAG_BEGYR_DIFF[i]}}; ./pp_config --set ICEDIAG_ENDYR_DIFF={{ICEDIAG_ENDYR_DIFF[i]}}; ./pp_config --set ICEDIAG_BEGYR_CONT={{ICEDIAG_BEGYR_CONT[i]}}; ./pp_config --set ICEDIAG_ENDYR_CONT={{ICEDIAG_ENDYR_CONT[i]}}; ./pp_config --set ICEDIAG_YRS_TO_AVG={{ICEDIAG_YRS_TO_AVG[i]}};  /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/ice_averages
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = economy 
+                -l = select=4:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ice_diagnostics|length) %}
+        [[ice_diagnostics_{{dates_ice_diagnostics[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001; /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/ice_diagnostics
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = economy 
+                -l = select=1:ncpus=8:mpiprocs=8
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ice_diagnostics|length) %}
+        [[ice_diagnostics_{{dates_ice_diagnostics[i]}}_post ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/; /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_lnd_averages|length) %}
+        [[lnd_averages_{{dates_lnd_averages[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/; ./pp_config --set LNDDIAG_clim_first_yr_1={{LNDDIAG_clim_first_yr_1[i]}}; ./pp_config --set LNDDIAG_trends_first_yr_1={{LNDDIAG_trends_first_yr_1[i]}}; ./pp_config --set LNDDIAG_clim_num_yrs_1={{LNDDIAG_clim_num_yrs_1[i]}}; ./pp_config --set LNDDIAG_trends_num_yrs_1={{LNDDIAG_trends_num_yrs_1[i]}};  /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/lnd_averages
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = economy 
+                -l = select=4:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_lnd_diagnostics|length) %}
+        [[lnd_diagnostics_{{dates_lnd_diagnostics[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001; /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/lnd_diagnostics
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = economy 
+                -l = select=1:ncpus=16:mpiprocs=16
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_lnd_diagnostics|length) %}
+        [[lnd_diagnostics_{{dates_lnd_diagnostics[i]}}_post ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/; /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_averages|length) %}
+        [[ocn_averages_{{dates_ocn_averages[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/; ./pp_config --set OCNDIAG_YEAR0={{OCNDIAG_YEAR0[i]}}; ./pp_config --set OCNDIAG_YEAR1={{OCNDIAG_YEAR1[i]}}; ./pp_config --set OCNDIAG_TSERIES_YEAR0={{OCNDIAG_TSERIES_YEAR0[i]}}; ./pp_config --set OCNDIAG_TSERIES_YEAR1={{OCNDIAG_TSERIES_YEAR1[i]}};  /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/ocn_averages
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = economy 
+                -l = select=4:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_diagnostics|length) %}
+        [[ocn_diagnostics_{{dates_ocn_diagnostics[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001; /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/ocn_diagnostics
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = economy 
+                -l = select=1:ncpus=16:mpiprocs=16
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_diagnostics|length) %}
+        [[ocn_diagnostics_{{dates_ocn_diagnostics[i]}}_post ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/; /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_timeseriesL|length) %}
+        [[timeseriesL_{{dates_timeseriesL[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001; /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/timeseriesL
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = timeseries
+                -q = economy 
+                -l = select=16:ncpus=9:mpiprocs=9
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_xconform|length) %}
+        [[xconform_{{dates_xconform[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001; /glade/work/cmip6/cases/DECK_2deg/b.e21.BCO2x4.f19_g17.CMIP6-abrupt4xCO2-2deg.001/postprocess/xconform
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = xconform
+                -q = economy 
+                -l = select=16:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+

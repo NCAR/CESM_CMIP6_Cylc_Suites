@@ -1,0 +1,205 @@
+#!Jinja2 
+{% set dates_case_run = ['2021-01-01'] %}
+{% set dates_case_st_archive = ['2021-01-01'] %}
+{% set dates_ice_averages = ['2021-01-01'] %}
+{% set dates_ice_diagnostics = ['2021-01-01'] %}
+{% set dates_ocn_averages = ['2021-01-01'] %}
+{% set dates_ocn_diagnostics = ['2021-01-01'] %}
+{% set dates_timeseriesL = ['2021-01-01'] %}
+{% set dates_xconform = ['2021-01-01'] %}
+{% set ATMDIAG_test_first_yr = [2015] %}
+{% set ATMDIAG_test_nyrs = [6] %}
+{% set OCNDIAG_YEAR0 = [2015] %}
+{% set OCNDIAG_YEAR1 = [2020] %}
+{% set OCNDIAG_TSERIES_YEAR0 = [2015] %}
+{% set OCNDIAG_TSERIES_YEAR1 = [2020] %}
+{% set LNDDIAG_clim_first_yr_1 = [2015] %}
+{% set LNDDIAG_trends_first_yr_1 = [2015] %}
+{% set LNDDIAG_clim_num_yrs_1 = [6] %}
+{% set LNDDIAG_trends_num_yrs_1 = [6] %}
+{% set ICEDIAG_BEGYR_DIFF = [2015] %}
+{% set ICEDIAG_ENDYR_DIFF = [2020] %}
+{% set ICEDIAG_BEGYR_CONT = [2015] %}
+{% set ICEDIAG_ENDYR_CONT = [2020] %}
+{% set ICEDIAG_YRS_TO_AVG = [6] %}
+title = b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001 workflow 
+[cylc]
+    [[environment]]
+        MAIL_ADDRESS=nanr@ucar.edu,strandwg@ucar.edu,mickelso@ucar.edu,expdb@cgd.ucar.edu
+    [[event hooks]]
+        shutdown handler = cylc email-suite
+[scheduling]
+    [[dependencies]]
+        graph = """
+                    case_run_2021-01-01 => case_st_archive_2021-01-01
+                    case_st_archive_2021-01-01 => timeseriesL_2021-01-01 & ocn_averages_2021-01-01 & ice_averages_2021-01-01
+                    timeseriesL_2021-01-01 => xconform_2021-01-01
+                    ocn_averages_2021-01-01 => ocn_diagnostics_2021-01-01 => ocn_diagnostics_2021-01-01_post
+                    ice_averages_2021-01-01 => ice_diagnostics_2021-01-01 => ice_diagnostics_2021-01-01_post
+               """
+[runtime]
+    [[root]]
+        [[[environment]]]
+        {% for i in range(0,dates_case_run|length) %}
+        [[case_run_{{dates_case_run[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001; /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001/case.run.cylc
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+                execution retry delays = PT30S, PT120S, PT600S
+        [[[directives]]]
+                -A = CESM0005
+                -q = regular
+                -N = ssp245-aer
+                -r = n
+                -j = oe
+                -S = /bin/bash
+	        -l = select=141:ncpus=36:mpiprocs=12:ompthreads=3
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_case_st_archive|length) %}
+        [[case_st_archive_{{dates_case_st_archive[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001; /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001/case.st_archive.cylc
+        [[[job]]]
+                method = pbs
+                execution time limit = PT1H
+        [[[directives]]]
+                -A = CESM0005
+                -q = regular
+                -N = b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001.st_archive
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=1:mpiprocs=1:ompthreads=1
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ice_averages|length) %}
+        [[ice_averages_{{dates_ice_averages[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001/postprocess/; ./pp_config --set ICEDIAG_BEGYR_DIFF={{ICEDIAG_BEGYR_DIFF[i]}}; ./pp_config --set ICEDIAG_ENDYR_DIFF={{ICEDIAG_ENDYR_DIFF[i]}}; ./pp_config --set ICEDIAG_BEGYR_CONT={{ICEDIAG_BEGYR_CONT[i]}}; ./pp_config --set ICEDIAG_ENDYR_CONT={{ICEDIAG_ENDYR_CONT[i]}}; ./pp_config --set ICEDIAG_YRS_TO_AVG={{ICEDIAG_YRS_TO_AVG[i]}};  /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001/postprocess/ice_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ice_diagnostics|length) %}
+        [[ice_diagnostics_{{dates_ice_diagnostics[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001; /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001/postprocess/ice_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=8:mpiprocs=8
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ice_diagnostics|length) %}
+        [[ice_diagnostics_{{dates_ice_diagnostics[i]}}_post ]]
+        script = cd /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001/postprocess/; /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_averages|length) %}
+        [[ocn_averages_{{dates_ocn_averages[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001/postprocess/; ./pp_config --set OCNDIAG_YEAR0={{OCNDIAG_YEAR0[i]}}; ./pp_config --set OCNDIAG_YEAR1={{OCNDIAG_YEAR1[i]}}; ./pp_config --set OCNDIAG_TSERIES_YEAR0={{OCNDIAG_TSERIES_YEAR0[i]}}; ./pp_config --set OCNDIAG_TSERIES_YEAR1={{OCNDIAG_TSERIES_YEAR1[i]}};  /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001/postprocess/ocn_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_diagnostics|length) %}
+        [[ocn_diagnostics_{{dates_ocn_diagnostics[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001; /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001/postprocess/ocn_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=16:mpiprocs=16
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_diagnostics|length) %}
+        [[ocn_diagnostics_{{dates_ocn_diagnostics[i]}}_post ]]
+        script = cd /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001/postprocess/; /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_timeseriesL|length) %}
+        [[timeseriesL_{{dates_timeseriesL[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001; /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001/postprocess/timeseriesL
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = timeseries
+                -q = regular
+                -l = select=16:ncpus=9:mpiprocs=9
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_xconform|length) %}
+        [[xconform_{{dates_xconform[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001; /glade/work/cmip6/cases/DAMIP/b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-aer.001/postprocess/xconform
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = xconform
+                -q = regular
+                -l = select=16:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+

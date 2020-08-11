@@ -1,0 +1,18 @@
+{
+    "t.e21.T1850G.f09_g17_gl4.CMIP6-ism-ssp585-self.001": {
+        "t.e21.T1850G.f09_g17_gl4.CMIP6-ism-ssp585-self.001": [
+            "case_run_2100-01-01", 
+            "case_st_archive_2100-01-01", 
+            "timeseriesL_2100-01-01", 
+            "xconform_2100-01-01", 
+            "atm_averages_0088-01-01", 
+            "atm_diagnostics_0088-01-01", 
+            "ocn_averages_0086-01-01", 
+            "ocn_diagnostics_0086-01-01", 
+            "lnd_averages_0087-01-01", 
+            "lnd_diagnostics_0087-01-01", 
+            "ice_averages_0086-01-01", 
+            "ice_diagnostics_0086-01-01"
+        ]
+    }
+}

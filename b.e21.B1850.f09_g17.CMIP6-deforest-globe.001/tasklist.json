@@ -1,0 +1,32 @@
+{
+    "b.e21.B1850.f09_g17.CMIP6-deforest-globe.001": {
+        "b.e21.B1850.f09_g17.CMIP6-deforest-globe.001": [
+            "case_run_1860-01-01", 
+            "case_st_archive_1860-01-01", 
+            "case_run_1870-01-01", 
+            "case_st_archive_1870-01-01", 
+            "case_run_1880-01-01", 
+            "case_st_archive_1880-01-01", 
+            "case_run_1890-01-01", 
+            "case_st_archive_1890-01-01", 
+            "case_run_1900-01-01", 
+            "case_st_archive_1900-01-01", 
+            "case_run_1910-01-01", 
+            "case_st_archive_1910-01-01", 
+            "case_run_1920-01-01", 
+            "case_st_archive_1920-01-01", 
+            "case_run_1930-01-01", 
+            "case_st_archive_1930-01-01", 
+            "timeseriesL_1930-01-01", 
+            "xconform_1930-01-01", 
+            "atm_averages_1930-01-01", 
+            "atm_diagnostics_1930-01-01", 
+            "ocn_averages_1930-01-01", 
+            "ocn_diagnostics_1930-01-01", 
+            "lnd_averages_1930-01-01", 
+            "lnd_diagnostics_1930-01-01", 
+            "ice_averages_1930-01-01", 
+            "ice_diagnostics_1930-01-01"
+        ]
+    }
+}

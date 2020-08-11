@@ -1,0 +1,38 @@
+{
+    "f.e21.F1850_BGC.f09_f09_mg17.CFMIP-piSST-4xCO2.001": {
+        "f.e21.F1850_BGC.f09_f09_mg17.CFMIP-piSST-4xCO2.001": [
+            "case_run_0003-01-01", 
+            "case_st_archive_0003-01-01", 
+            "case_run_0005-01-01", 
+            "case_st_archive_0005-01-01", 
+            "case_run_0007-01-01", 
+            "case_st_archive_0007-01-01", 
+            "case_run_0009-01-01", 
+            "case_st_archive_0009-01-01", 
+            "case_run_0011-01-01", 
+            "case_st_archive_0011-01-01", 
+            "case_run_0013-01-01", 
+            "case_st_archive_0013-01-01", 
+            "case_run_0015-01-01", 
+            "case_st_archive_0015-01-01", 
+            "case_run_0017-01-01", 
+            "case_st_archive_0017-01-01", 
+            "case_run_0019-01-01", 
+            "case_st_archive_0019-01-01", 
+            "case_run_0021-01-01", 
+            "case_st_archive_0021-01-01", 
+            "case_run_0023-01-01", 
+            "case_st_archive_0023-01-01", 
+            "case_run_0025-01-01", 
+            "case_st_archive_0025-01-01", 
+            "case_run_0027-01-01", 
+            "case_st_archive_0027-01-01", 
+            "case_run_0029-01-01", 
+            "case_st_archive_0029-01-01", 
+            "case_run_0031-01-01", 
+            "case_st_archive_0031-01-01", 
+            "timeseriesL_0031-01-01", 
+            "xconform_0031-01-01"
+        ]
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "b.e21.B1850.f19_g17.CMIP6-piControl-2deg.001": {
+        "b.e21.B1850.f19_g17.CMIP6-piControl-2deg.001": [
+            "case_run_0016-01-01", 
+            "case_st_archive_0016-01-01", 
+            "case_run_0031-01-01", 
+            "case_st_archive_0031-01-01", 
+            "atm_averages_0023-01-01", 
+            "atm_diagnostics_0023-01-01", 
+            "ocn_averages_0022-01-01", 
+            "ocn_diagnostics_0022-01-01", 
+            "lnd_averages_0023-01-01", 
+            "lnd_diagnostics_0023-01-01", 
+            "ice_averages_0022-01-01", 
+            "ice_diagnostics_0022-01-01", 
+            "case_run_0046-01-01", 
+            "case_st_archive_0046-01-01", 
+            "case_run_0061-01-01", 
+            "case_st_archive_0061-01-01", 
+            "timeseriesL_0061-01-01", 
+            "xconform_0061-01-01"
+        ]
+    }
+}

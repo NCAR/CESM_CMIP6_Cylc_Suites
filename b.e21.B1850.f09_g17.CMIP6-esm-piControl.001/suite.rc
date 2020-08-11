@@ -1,0 +1,512 @@
+#!Jinja2 
+{% set dates_atm_averages = ['0022-01-01', '0102-01-01', '0202-01-01', '0302-01-01', '0402-01-01', '0501-01-01'] %}
+{% set dates_atm_diagnostics = ['0022-01-01', '0102-01-01', '0202-01-01', '0302-01-01', '0402-01-01', '0501-01-01'] %}
+{% set dates_case_run = ['0006-01-01', '0011-01-01', '0016-01-01', '0021-01-01', '0026-01-01', '0031-01-01', '0036-01-01', '0041-01-01', '0046-01-01', '0051-01-01', '0056-01-01', '0061-01-01', '0066-01-01', '0071-01-01', '0076-01-01', '0081-01-01', '0086-01-01', '0091-01-01', '0096-01-01', '0101-01-01', '0106-01-01', '0111-01-01', '0116-01-01', '0121-01-01', '0126-01-01', '0131-01-01', '0136-01-01', '0141-01-01', '0146-01-01', '0151-01-01', '0156-01-01', '0161-01-01', '0166-01-01', '0171-01-01', '0176-01-01', '0181-01-01', '0186-01-01', '0191-01-01', '0196-01-01', '0201-01-01', '0206-01-01', '0211-01-01', '0216-01-01', '0221-01-01', '0226-01-01', '0231-01-01', '0236-01-01', '0241-01-01', '0246-01-01', '0251-01-01', '0256-01-01', '0261-01-01', '0266-01-01', '0271-01-01', '0276-01-01', '0281-01-01', '0286-01-01', '0291-01-01', '0296-01-01', '0301-01-01', '0306-01-01', '0311-01-01', '0316-01-01', '0321-01-01', '0326-01-01', '0331-01-01', '0336-01-01', '0341-01-01', '0346-01-01', '0351-01-01', '0356-01-01', '0361-01-01', '0366-01-01', '0371-01-01', '0376-01-01', '0381-01-01', '0386-01-01', '0391-01-01', '0396-01-01', '0401-01-01', '0406-01-01', '0411-01-01', '0416-01-01', '0421-01-01', '0426-01-01', '0431-01-01', '0436-01-01', '0441-01-01', '0446-01-01', '0451-01-01', '0456-01-01', '0461-01-01', '0466-01-01', '0471-01-01', '0476-01-01', '0481-01-01', '0486-01-01', '0491-01-01', '0496-01-01', '0501-01-01'] %}
+{% set dates_case_st_archive = ['0006-01-01', '0011-01-01', '0016-01-01', '0021-01-01', '0026-01-01', '0031-01-01', '0036-01-01', '0041-01-01', '0046-01-01', '0051-01-01', '0056-01-01', '0061-01-01', '0066-01-01', '0071-01-01', '0076-01-01', '0081-01-01', '0086-01-01', '0091-01-01', '0096-01-01', '0101-01-01', '0106-01-01', '0111-01-01', '0116-01-01', '0121-01-01', '0126-01-01', '0131-01-01', '0136-01-01', '0141-01-01', '0146-01-01', '0151-01-01', '0156-01-01', '0161-01-01', '0166-01-01', '0171-01-01', '0176-01-01', '0181-01-01', '0186-01-01', '0191-01-01', '0196-01-01', '0201-01-01', '0206-01-01', '0211-01-01', '0216-01-01', '0221-01-01', '0226-01-01', '0231-01-01', '0236-01-01', '0241-01-01', '0246-01-01', '0251-01-01', '0256-01-01', '0261-01-01', '0266-01-01', '0271-01-01', '0276-01-01', '0281-01-01', '0286-01-01', '0291-01-01', '0296-01-01', '0301-01-01', '0306-01-01', '0311-01-01', '0316-01-01', '0321-01-01', '0326-01-01', '0331-01-01', '0336-01-01', '0341-01-01', '0346-01-01', '0351-01-01', '0356-01-01', '0361-01-01', '0366-01-01', '0371-01-01', '0376-01-01', '0381-01-01', '0386-01-01', '0391-01-01', '0396-01-01', '0401-01-01', '0406-01-01', '0411-01-01', '0416-01-01', '0421-01-01', '0426-01-01', '0431-01-01', '0436-01-01', '0441-01-01', '0446-01-01', '0451-01-01', '0456-01-01', '0461-01-01', '0466-01-01', '0471-01-01', '0476-01-01', '0481-01-01', '0486-01-01', '0491-01-01', '0496-01-01', '0501-01-01'] %}
+{% set dates_ice_averages = ['0021-01-01', '0101-01-01', '0201-01-01', '0301-01-01', '0401-01-01', '0501-01-01'] %}
+{% set dates_ice_diagnostics = ['0021-01-01', '0101-01-01', '0201-01-01', '0301-01-01', '0401-01-01', '0501-01-01'] %}
+{% set dates_lnd_averages = ['0022-01-01', '0102-01-01', '0202-01-01', '0302-01-01', '0402-01-01'] %}
+{% set dates_lnd_diagnostics = ['0022-01-01', '0102-01-01', '0202-01-01', '0302-01-01', '0402-01-01'] %}
+{% set dates_ocn_averages = ['0021-01-01', '0101-01-01', '0201-01-01', '0301-01-01', '0401-01-01', '0501-01-01'] %}
+{% set dates_ocn_diagnostics = ['0021-01-01', '0101-01-01', '0201-01-01', '0301-01-01', '0401-01-01', '0501-01-01'] %}
+{% set dates_timeseriesL = ['0501-01-01'] %}
+{% set dates_xconform = ['0501-01-01'] %}
+{% set ATMDIAG_test_first_yr = [2,2,101,201,301,401] %}
+{% set ATMDIAG_test_nyrs = [19,99,100,100,100,99] %}
+{% set OCNDIAG_YEAR0 = [1,1,101,201,301,401] %}
+{% set OCNDIAG_YEAR1 = [20,100,200,300,400,500] %}
+{% set OCNDIAG_TSERIES_YEAR0 = [1,1,1,1,1,1] %}
+{% set OCNDIAG_TSERIES_YEAR1 = [20,100,200,300,400,500] %}
+{% set LNDDIAG_clim_first_yr_1 = [2,2,101,201,301,401] %}
+{% set LNDDIAG_trends_first_yr_1 = [1,1,1,1,1,1] %}
+{% set LNDDIAG_clim_num_yrs_1 = [19,99,100,100,100,99] %}
+{% set LNDDIAG_trends_num_yrs_1 = [20,100,200,300,400,500] %}
+{% set ICEDIAG_BEGYR_DIFF = [1,1,101,201,301,401] %}
+{% set ICEDIAG_ENDYR_DIFF = [20,100,200,300,400,500] %}
+{% set ICEDIAG_BEGYR_CONT = [1,1,101,201,301,401] %}
+{% set ICEDIAG_ENDYR_CONT = [20,100,200,300,400,500] %}
+{% set ICEDIAG_YRS_TO_AVG = [20,100,100,100,100,100] %}
+title = b.e21.B1850.f09_g17.CMIP6-esm-piControl.001 workflow 
+[cylc]
+    [[environment]]
+        MAIL_ADDRESS=klindsay@ucar.edu,mickelso@ucar.edu,expdb@cgd.ucar.edu
+    [[event hooks]]
+        shutdown handler = cylc email-suite
+[scheduling]
+    [[dependencies]]
+        graph = """
+                    case_run_0006-01-01 => case_st_archive_0006-01-01
+                    case_st_archive_0006-01-01 => case_run_0011-01-01
+                    case_run_0011-01-01 => case_st_archive_0011-01-01
+                    case_st_archive_0011-01-01 => case_run_0016-01-01
+                    case_run_0016-01-01 => case_st_archive_0016-01-01
+                    case_st_archive_0016-01-01 => case_run_0021-01-01
+                    case_run_0021-01-01 => case_st_archive_0021-01-01
+                    case_st_archive_0021-01-01 => ocn_averages_0021-01-01 & ice_averages_0021-01-01 & case_run_0026-01-01
+                    ocn_averages_0021-01-01 => ocn_diagnostics_0021-01-01 => ocn_diagnostics_0021-01-01_post
+                    ice_averages_0021-01-01 => ice_diagnostics_0021-01-01 => ice_diagnostics_0021-01-01_post
+                    case_run_0026-01-01 => case_st_archive_0026-01-01
+                    case_st_archive_0026-01-01 => atm_averages_0022-01-01 & lnd_averages_0022-01-01 & case_run_0031-01-01
+                    atm_averages_0022-01-01 => atm_diagnostics_0022-01-01 => atm_diagnostics_0022-01-01_post
+                    lnd_averages_0022-01-01 => lnd_diagnostics_0022-01-01 => lnd_diagnostics_0022-01-01_post
+                    case_run_0031-01-01 => case_st_archive_0031-01-01
+                    case_st_archive_0031-01-01 => case_run_0036-01-01
+                    case_run_0036-01-01 => case_st_archive_0036-01-01
+                    case_st_archive_0036-01-01 => case_run_0041-01-01
+                    case_run_0041-01-01 => case_st_archive_0041-01-01
+                    case_st_archive_0041-01-01 => case_run_0046-01-01
+                    case_run_0046-01-01 => case_st_archive_0046-01-01
+                    case_st_archive_0046-01-01 => case_run_0051-01-01
+                    case_run_0051-01-01 => case_st_archive_0051-01-01
+                    case_st_archive_0051-01-01 => case_run_0056-01-01
+                    case_run_0056-01-01 => case_st_archive_0056-01-01
+                    case_st_archive_0056-01-01 => case_run_0061-01-01
+                    case_run_0061-01-01 => case_st_archive_0061-01-01
+                    case_st_archive_0061-01-01 => case_run_0066-01-01
+                    case_run_0066-01-01 => case_st_archive_0066-01-01
+                    case_st_archive_0066-01-01 => case_run_0071-01-01
+                    case_run_0071-01-01 => case_st_archive_0071-01-01
+                    case_st_archive_0071-01-01 => case_run_0076-01-01
+                    case_run_0076-01-01 => case_st_archive_0076-01-01
+                    case_st_archive_0076-01-01 => case_run_0081-01-01
+                    case_run_0081-01-01 => case_st_archive_0081-01-01
+                    case_st_archive_0081-01-01 => case_run_0086-01-01
+                    case_run_0086-01-01 => case_st_archive_0086-01-01
+                    case_st_archive_0086-01-01 => case_run_0091-01-01
+                    case_run_0091-01-01 => case_st_archive_0091-01-01
+                    case_st_archive_0091-01-01 => case_run_0096-01-01
+                    case_run_0096-01-01 => case_st_archive_0096-01-01
+                    case_st_archive_0096-01-01 => case_run_0101-01-01
+                    case_run_0101-01-01 => case_st_archive_0101-01-01
+                    case_st_archive_0101-01-01 => ocn_averages_0101-01-01 & ice_averages_0101-01-01 & case_run_0106-01-01
+                    ocn_averages_0101-01-01 => ocn_diagnostics_0101-01-01 => ocn_diagnostics_0101-01-01_post
+                    ice_averages_0101-01-01 => ice_diagnostics_0101-01-01 => ice_diagnostics_0101-01-01_post
+                    case_run_0106-01-01 => case_st_archive_0106-01-01
+                    case_st_archive_0106-01-01 => atm_averages_0102-01-01 & lnd_averages_0102-01-01 & case_run_0111-01-01
+                    atm_averages_0102-01-01 => atm_diagnostics_0102-01-01 => atm_diagnostics_0102-01-01_post
+                    lnd_averages_0102-01-01 => lnd_diagnostics_0102-01-01 => lnd_diagnostics_0102-01-01_post
+                    case_run_0111-01-01 => case_st_archive_0111-01-01
+                    case_st_archive_0111-01-01 => case_run_0116-01-01
+                    case_run_0116-01-01 => case_st_archive_0116-01-01
+                    case_st_archive_0116-01-01 => case_run_0121-01-01
+                    case_run_0121-01-01 => case_st_archive_0121-01-01
+                    case_st_archive_0121-01-01 => case_run_0126-01-01
+                    case_run_0126-01-01 => case_st_archive_0126-01-01
+                    case_st_archive_0126-01-01 => case_run_0131-01-01
+                    case_run_0131-01-01 => case_st_archive_0131-01-01
+                    case_st_archive_0131-01-01 => case_run_0136-01-01
+                    case_run_0136-01-01 => case_st_archive_0136-01-01
+                    case_st_archive_0136-01-01 => case_run_0141-01-01
+                    case_run_0141-01-01 => case_st_archive_0141-01-01
+                    case_st_archive_0141-01-01 => case_run_0146-01-01
+                    case_run_0146-01-01 => case_st_archive_0146-01-01
+                    case_st_archive_0146-01-01 => case_run_0151-01-01
+                    case_run_0151-01-01 => case_st_archive_0151-01-01
+                    case_st_archive_0151-01-01 => case_run_0156-01-01
+                    case_run_0156-01-01 => case_st_archive_0156-01-01
+                    case_st_archive_0156-01-01 => case_run_0161-01-01
+                    case_run_0161-01-01 => case_st_archive_0161-01-01
+                    case_st_archive_0161-01-01 => case_run_0166-01-01
+                    case_run_0166-01-01 => case_st_archive_0166-01-01
+                    case_st_archive_0166-01-01 => case_run_0171-01-01
+                    case_run_0171-01-01 => case_st_archive_0171-01-01
+                    case_st_archive_0171-01-01 => case_run_0176-01-01
+                    case_run_0176-01-01 => case_st_archive_0176-01-01
+                    case_st_archive_0176-01-01 => case_run_0181-01-01
+                    case_run_0181-01-01 => case_st_archive_0181-01-01
+                    case_st_archive_0181-01-01 => case_run_0186-01-01
+                    case_run_0186-01-01 => case_st_archive_0186-01-01
+                    case_st_archive_0186-01-01 => case_run_0191-01-01
+                    case_run_0191-01-01 => case_st_archive_0191-01-01
+                    case_st_archive_0191-01-01 => case_run_0196-01-01
+                    case_run_0196-01-01 => case_st_archive_0196-01-01
+                    case_st_archive_0196-01-01 => case_run_0201-01-01
+                    case_run_0201-01-01 => case_st_archive_0201-01-01
+                    case_st_archive_0201-01-01 => ocn_averages_0201-01-01 & ice_averages_0201-01-01 & case_run_0206-01-01
+                    ocn_averages_0201-01-01 => ocn_diagnostics_0201-01-01 => ocn_diagnostics_0201-01-01_post
+                    ice_averages_0201-01-01 => ice_diagnostics_0201-01-01 => ice_diagnostics_0201-01-01_post
+                    case_run_0206-01-01 => case_st_archive_0206-01-01
+                    case_st_archive_0206-01-01 => atm_averages_0202-01-01 & lnd_averages_0202-01-01 & case_run_0211-01-01
+                    atm_averages_0202-01-01 => atm_diagnostics_0202-01-01 => atm_diagnostics_0202-01-01_post
+                    lnd_averages_0202-01-01 => lnd_diagnostics_0202-01-01 => lnd_diagnostics_0202-01-01_post
+                    case_run_0211-01-01 => case_st_archive_0211-01-01
+                    case_st_archive_0211-01-01 => case_run_0216-01-01
+                    case_run_0216-01-01 => case_st_archive_0216-01-01
+                    case_st_archive_0216-01-01 => case_run_0221-01-01
+                    case_run_0221-01-01 => case_st_archive_0221-01-01
+                    case_st_archive_0221-01-01 => case_run_0226-01-01
+                    case_run_0226-01-01 => case_st_archive_0226-01-01
+                    case_st_archive_0226-01-01 => case_run_0231-01-01
+                    case_run_0231-01-01 => case_st_archive_0231-01-01
+                    case_st_archive_0231-01-01 => case_run_0236-01-01
+                    case_run_0236-01-01 => case_st_archive_0236-01-01
+                    case_st_archive_0236-01-01 => case_run_0241-01-01
+                    case_run_0241-01-01 => case_st_archive_0241-01-01
+                    case_st_archive_0241-01-01 => case_run_0246-01-01
+                    case_run_0246-01-01 => case_st_archive_0246-01-01
+                    case_st_archive_0246-01-01 => case_run_0251-01-01
+                    case_run_0251-01-01 => case_st_archive_0251-01-01
+                    case_st_archive_0251-01-01 => case_run_0256-01-01
+                    case_run_0256-01-01 => case_st_archive_0256-01-01
+                    case_st_archive_0256-01-01 => case_run_0261-01-01
+                    case_run_0261-01-01 => case_st_archive_0261-01-01
+                    case_st_archive_0261-01-01 => case_run_0266-01-01
+                    case_run_0266-01-01 => case_st_archive_0266-01-01
+                    case_st_archive_0266-01-01 => case_run_0271-01-01
+                    case_run_0271-01-01 => case_st_archive_0271-01-01
+                    case_st_archive_0271-01-01 => case_run_0276-01-01
+                    case_run_0276-01-01 => case_st_archive_0276-01-01
+                    case_st_archive_0276-01-01 => case_run_0281-01-01
+                    case_run_0281-01-01 => case_st_archive_0281-01-01
+                    case_st_archive_0281-01-01 => case_run_0286-01-01
+                    case_run_0286-01-01 => case_st_archive_0286-01-01
+                    case_st_archive_0286-01-01 => case_run_0291-01-01
+                    case_run_0291-01-01 => case_st_archive_0291-01-01
+                    case_st_archive_0291-01-01 => case_run_0296-01-01
+                    case_run_0296-01-01 => case_st_archive_0296-01-01
+                    case_st_archive_0296-01-01 => case_run_0301-01-01
+                    case_run_0301-01-01 => case_st_archive_0301-01-01
+                    case_st_archive_0301-01-01 => ocn_averages_0301-01-01 & ice_averages_0301-01-01 & case_run_0306-01-01
+                    ocn_averages_0301-01-01 => ocn_diagnostics_0301-01-01 => ocn_diagnostics_0301-01-01_post
+                    ice_averages_0301-01-01 => ice_diagnostics_0301-01-01 => ice_diagnostics_0301-01-01_post
+                    case_run_0306-01-01 => case_st_archive_0306-01-01
+                    case_st_archive_0306-01-01 => atm_averages_0302-01-01 & lnd_averages_0302-01-01 & case_run_0311-01-01
+                    atm_averages_0302-01-01 => atm_diagnostics_0302-01-01 => atm_diagnostics_0302-01-01_post
+                    lnd_averages_0302-01-01 => lnd_diagnostics_0302-01-01 => lnd_diagnostics_0302-01-01_post
+                    case_run_0311-01-01 => case_st_archive_0311-01-01
+                    case_st_archive_0311-01-01 => case_run_0316-01-01
+                    case_run_0316-01-01 => case_st_archive_0316-01-01
+                    case_st_archive_0316-01-01 => case_run_0321-01-01
+                    case_run_0321-01-01 => case_st_archive_0321-01-01
+                    case_st_archive_0321-01-01 => case_run_0326-01-01
+                    case_run_0326-01-01 => case_st_archive_0326-01-01
+                    case_st_archive_0326-01-01 => case_run_0331-01-01
+                    case_run_0331-01-01 => case_st_archive_0331-01-01
+                    case_st_archive_0331-01-01 => case_run_0336-01-01
+                    case_run_0336-01-01 => case_st_archive_0336-01-01
+                    case_st_archive_0336-01-01 => case_run_0341-01-01
+                    case_run_0341-01-01 => case_st_archive_0341-01-01
+                    case_st_archive_0341-01-01 => case_run_0346-01-01
+                    case_run_0346-01-01 => case_st_archive_0346-01-01
+                    case_st_archive_0346-01-01 => case_run_0351-01-01
+                    case_run_0351-01-01 => case_st_archive_0351-01-01
+                    case_st_archive_0351-01-01 => case_run_0356-01-01
+                    case_run_0356-01-01 => case_st_archive_0356-01-01
+                    case_st_archive_0356-01-01 => case_run_0361-01-01
+                    case_run_0361-01-01 => case_st_archive_0361-01-01
+                    case_st_archive_0361-01-01 => case_run_0366-01-01
+                    case_run_0366-01-01 => case_st_archive_0366-01-01
+                    case_st_archive_0366-01-01 => case_run_0371-01-01
+                    case_run_0371-01-01 => case_st_archive_0371-01-01
+                    case_st_archive_0371-01-01 => case_run_0376-01-01
+                    case_run_0376-01-01 => case_st_archive_0376-01-01
+                    case_st_archive_0376-01-01 => case_run_0381-01-01
+                    case_run_0381-01-01 => case_st_archive_0381-01-01
+                    case_st_archive_0381-01-01 => case_run_0386-01-01
+                    case_run_0386-01-01 => case_st_archive_0386-01-01
+                    case_st_archive_0386-01-01 => case_run_0391-01-01
+                    case_run_0391-01-01 => case_st_archive_0391-01-01
+                    case_st_archive_0391-01-01 => case_run_0396-01-01
+                    case_run_0396-01-01 => case_st_archive_0396-01-01
+                    case_st_archive_0396-01-01 => case_run_0401-01-01
+                    case_run_0401-01-01 => case_st_archive_0401-01-01
+                    case_st_archive_0401-01-01 => ocn_averages_0401-01-01 & ice_averages_0401-01-01 & case_run_0406-01-01
+                    ocn_averages_0401-01-01 => ocn_diagnostics_0401-01-01 => ocn_diagnostics_0401-01-01_post
+                    ice_averages_0401-01-01 => ice_diagnostics_0401-01-01 => ice_diagnostics_0401-01-01_post
+                    case_run_0406-01-01 => case_st_archive_0406-01-01
+                    case_st_archive_0406-01-01 => atm_averages_0402-01-01 & lnd_averages_0402-01-01 & case_run_0411-01-01
+                    atm_averages_0402-01-01 => atm_diagnostics_0402-01-01 => atm_diagnostics_0402-01-01_post
+                    lnd_averages_0402-01-01 => lnd_diagnostics_0402-01-01 => lnd_diagnostics_0402-01-01_post
+                    case_run_0411-01-01 => case_st_archive_0411-01-01
+                    case_st_archive_0411-01-01 => case_run_0416-01-01
+                    case_run_0416-01-01 => case_st_archive_0416-01-01
+                    case_st_archive_0416-01-01 => case_run_0421-01-01
+                    case_run_0421-01-01 => case_st_archive_0421-01-01
+                    case_st_archive_0421-01-01 => case_run_0426-01-01
+                    case_run_0426-01-01 => case_st_archive_0426-01-01
+                    case_st_archive_0426-01-01 => case_run_0431-01-01
+                    case_run_0431-01-01 => case_st_archive_0431-01-01
+                    case_st_archive_0431-01-01 => case_run_0436-01-01
+                    case_run_0436-01-01 => case_st_archive_0436-01-01
+                    case_st_archive_0436-01-01 => case_run_0441-01-01
+                    case_run_0441-01-01 => case_st_archive_0441-01-01
+                    case_st_archive_0441-01-01 => case_run_0446-01-01
+                    case_run_0446-01-01 => case_st_archive_0446-01-01
+                    case_st_archive_0446-01-01 => case_run_0451-01-01
+                    case_run_0451-01-01 => case_st_archive_0451-01-01
+                    case_st_archive_0451-01-01 => case_run_0456-01-01
+                    case_run_0456-01-01 => case_st_archive_0456-01-01
+                    case_st_archive_0456-01-01 => case_run_0461-01-01
+                    case_run_0461-01-01 => case_st_archive_0461-01-01
+                    case_st_archive_0461-01-01 => case_run_0466-01-01
+                    case_run_0466-01-01 => case_st_archive_0466-01-01
+                    case_st_archive_0466-01-01 => case_run_0471-01-01
+                    case_run_0471-01-01 => case_st_archive_0471-01-01
+                    case_st_archive_0471-01-01 => case_run_0476-01-01
+                    case_run_0476-01-01 => case_st_archive_0476-01-01
+                    case_st_archive_0476-01-01 => case_run_0481-01-01
+                    case_run_0481-01-01 => case_st_archive_0481-01-01
+                    case_st_archive_0481-01-01 => case_run_0486-01-01
+                    case_run_0486-01-01 => case_st_archive_0486-01-01
+                    case_st_archive_0486-01-01 => case_run_0491-01-01
+                    case_run_0491-01-01 => case_st_archive_0491-01-01
+                    case_st_archive_0491-01-01 => case_run_0496-01-01
+                    case_run_0496-01-01 => case_st_archive_0496-01-01
+                    case_st_archive_0496-01-01 => case_run_0501-01-01
+                    case_run_0501-01-01 => case_st_archive_0501-01-01
+                    case_st_archive_0501-01-01 => timeseriesL_0501-01-01 & atm_averages_0501-01-01 & ocn_averages_0501-01-01 & ice_averages_0501-01-01
+                    timeseriesL_0501-01-01 => xconform_0501-01-01
+                    atm_averages_0501-01-01 => atm_diagnostics_0501-01-01 => atm_diagnostics_0501-01-01_post
+                    ocn_averages_0501-01-01 => ocn_diagnostics_0501-01-01 => ocn_diagnostics_0501-01-01_post
+                    ice_averages_0501-01-01 => ice_diagnostics_0501-01-01 => ice_diagnostics_0501-01-01_post
+               """
+[runtime]
+    [[root]]
+        [[[environment]]]
+        {% for i in range(0,dates_atm_averages|length) %}
+        [[atm_averages_{{dates_atm_averages[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/; ./pp_config --set ATMDIAG_test_first_yr={{ATMDIAG_test_first_yr[i]}}; ./pp_config --set ATMDIAG_test_nyrs={{ATMDIAG_test_nyrs[i]}};  /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/atm_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_atm_diagnostics|length) %}
+        [[atm_diagnostics_{{dates_atm_diagnostics[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001; /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/atm_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_atm_diagnostics|length) %}
+        [[atm_diagnostics_{{dates_atm_diagnostics[i]}}_post ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/; /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_case_run|length) %}
+        [[case_run_{{dates_case_run[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001; /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/case.run.cylc
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+                execution retry delays = PT30S, PT120S, PT600S
+        [[[directives]]]
+                -A = CESM0005
+                -q = regular
+                -N = b.e21.B1850.f09_g17.CMIP6-esm-piControl.001.run
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=120:ncpus=36:mpiprocs=12:ompthreads=3
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_case_st_archive|length) %}
+        [[case_st_archive_{{dates_case_st_archive[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001; /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/case.st_archive.cylc
+        [[[job]]]
+                method = pbs
+                execution time limit = PT1H
+        [[[directives]]]
+                -A = CESM0005
+                -q = regular
+                -N = b.e21.B1850.f09_g17.CMIP6-esm-piControl.001.st_archive
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=1:mpiprocs=1:ompthreads=3
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ice_averages|length) %}
+        [[ice_averages_{{dates_ice_averages[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/; ./pp_config --set ICEDIAG_BEGYR_DIFF={{ICEDIAG_BEGYR_DIFF[i]}}; ./pp_config --set ICEDIAG_ENDYR_DIFF={{ICEDIAG_ENDYR_DIFF[i]}}; ./pp_config --set ICEDIAG_BEGYR_CONT={{ICEDIAG_BEGYR_CONT[i]}}; ./pp_config --set ICEDIAG_ENDYR_CONT={{ICEDIAG_ENDYR_CONT[i]}}; ./pp_config --set ICEDIAG_YRS_TO_AVG={{ICEDIAG_YRS_TO_AVG[i]}};  /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/ice_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ice_diagnostics|length) %}
+        [[ice_diagnostics_{{dates_ice_diagnostics[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001; /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/ice_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=8:mpiprocs=8
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ice_diagnostics|length) %}
+        [[ice_diagnostics_{{dates_ice_diagnostics[i]}}_post ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/; /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_lnd_averages|length) %}
+        [[lnd_averages_{{dates_lnd_averages[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/; ./pp_config --set LNDDIAG_clim_first_yr_1={{LNDDIAG_clim_first_yr_1[i]}}; ./pp_config --set LNDDIAG_trends_first_yr_1={{LNDDIAG_trends_first_yr_1[i]}}; ./pp_config --set LNDDIAG_clim_num_yrs_1={{LNDDIAG_clim_num_yrs_1[i]}}; ./pp_config --set LNDDIAG_trends_num_yrs_1={{LNDDIAG_trends_num_yrs_1[i]}};  /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/lnd_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_lnd_diagnostics|length) %}
+        [[lnd_diagnostics_{{dates_lnd_diagnostics[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001; /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/lnd_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=16:mpiprocs=16
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_lnd_diagnostics|length) %}
+        [[lnd_diagnostics_{{dates_lnd_diagnostics[i]}}_post ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/; /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_averages|length) %}
+        [[ocn_averages_{{dates_ocn_averages[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/; ./pp_config --set OCNDIAG_YEAR0={{OCNDIAG_YEAR0[i]}}; ./pp_config --set OCNDIAG_YEAR1={{OCNDIAG_YEAR1[i]}}; ./pp_config --set OCNDIAG_TSERIES_YEAR0={{OCNDIAG_TSERIES_YEAR0[i]}}; ./pp_config --set OCNDIAG_TSERIES_YEAR1={{OCNDIAG_TSERIES_YEAR1[i]}};  /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/ocn_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_diagnostics|length) %}
+        [[ocn_diagnostics_{{dates_ocn_diagnostics[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001; /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/ocn_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=16:mpiprocs=16
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_diagnostics|length) %}
+        [[ocn_diagnostics_{{dates_ocn_diagnostics[i]}}_post ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/; /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_timeseriesL|length) %}
+        [[timeseriesL_{{dates_timeseriesL[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001; /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/timeseriesL
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = timeseries
+                -q = regular
+                -l = select=32:ncpus=9:mpiprocs=9
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_xconform|length) %}
+        [[xconform_{{dates_xconform[i]}} ]]
+        script = cd /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001; /glade/work/cmip6/cases/DECK/b.e21.B1850.f09_g17.CMIP6-esm-piControl.001/postprocess/xconform
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = xconform
+                -q = regular
+                -l = select=32:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+

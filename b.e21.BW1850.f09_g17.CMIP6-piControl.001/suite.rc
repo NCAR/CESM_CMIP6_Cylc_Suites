@@ -1,0 +1,428 @@
+#!Jinja2
+
+{% set first1 = 89 %}
+{% set last1 = 147 %}
+{% set years1 = 2 %}
+
+{% set first2 = 150 %}
+{% set last2 = 242 %}
+{% set years2 = 1 %}
+
+{% set first3 = 244 %}
+{% set last3 = 502 %}
+{% set years3 = 2 %}
+
+{% set ts_first = ['0250', '0300', '0350', '0400', '0450'] %}
+{% set ts_last = ['0299', '0349', '0399', '0449', '0499'] %}
+{% set ts_trigger = ['0300-01-01', '0350-01-01', '0400-01-01', '0450-01-01', '0502-01-01'] %}
+
+title = b.e21.BW1850.f09_g17.CMIP6-piControl.001 workflow 
+[cylc]
+    [[environment]]
+        MAIL_ADDRESS=mmills@ucar.edu,mickelso@ucar.edu,expdb@cgd.ucar.edu
+    [[event hooks]]
+        shutdown handler = cylc email-suite
+[scheduling]
+    [[dependencies]]
+        graph = """
+   
+                    {% for i in range(0,ts_first|length) %}
+                        case_st_archive_{{ts_trigger[i]}} => set_ts_links_{{ts_trigger[i]}}
+                        set_ts_links_{{ts_trigger[i]}} => timeseriesL_{{ts_trigger[i]}}    
+                    {% endfor %}
+
+                    {% for I in range(18, first1) %}
+                        {% set i = I  %}
+                        {% set j = '0'|string+i|string %}
+                        {% if i < 100 %}
+                            {% set j = '00'|string+i|string %}
+                        {% endif %}
+                        {% set ip = i+1  %}
+                        {% set jp = '0'|string+ip|string %}
+                        {% if ip < 100 %}
+                            {% set jp = '00'|string+ip|string %}
+                        {% endif %}
+                        case_run_{{j}}-01-01 => case_st_archive_{{j}}-01-01 
+                        case_st_archive_{{j}}-01-01 => case_run_{{jp}}-01-01
+                    {% endfor %}  
+
+                    {% for I in range(0, ((last1-first1)/years1)|int+1) %}
+                        {% set i = first1+(I*years1)  %}
+                        {% set j = '0'|string+i|string %}
+                        {% if i < 100 %}
+                            {% set j = '00'|string+i|string %}
+                        {% endif %}
+                        {% set ip = i+years1  %}
+                        {% set jp = '0'|string+ip|string %}
+                        {% if ip < 100 %}
+                            {% set jp = '00'|string+ip|string %}
+                        {% endif %}
+                        case_run_{{j}}-01-01 => case_st_archive_{{j}}-01-01 
+                        case_st_archive_{{j}}-01-01 => case_run_{{jp}}-01-01
+                    {% endfor %}
+                    case_run_0149-01-01 => case_st_archive_0149-01-01
+                    case_st_archive_0149-01-01 => case_run_0{{first2}}-01-01
+
+                    {% for I in range(first2, (last2)) %}
+                        {% set i = I  %}
+                        {% set j = '0'|string+i|string %}
+                        {% set ip = i+years2  %}
+                        {% set jp = '0'|string+ip|string %}
+                        case_run_{{j}}-01-01 => case_st_archive_{{j}}-01-01 
+                        case_st_archive_{{j}}-01-01 => case_run_{{jp}}-01-01
+                    {% endfor %}
+
+                    {% for I in range(0, ((last3-first3)/years3)|int) %}
+                        {% set i = first3+(I*years3)  %}
+                        {% set j = '0'|string+i|string %}
+                        {% set ip = i+years3  %}
+                        {% set jp = '0'|string+ip|string %}
+                        case_run_{{j}}-01-01 => case_st_archive_{{j}}-01-01 
+                        case_st_archive_{{j}}-01-01 => case_run_{{jp}}-01-01
+                    {% endfor %}
+                    case_run_0242-01-01 => case_st_archive_0242-01-01
+                    case_st_archive_0242-01-01 => case_run_0243-01-01
+                    case_run_0243-01-01 => case_st_archive_0243-01-01
+                    case_st_archive_0243-01-01 => case_run_0244-01-01 
+                    case_st_archive_0500-01-01 => case_run_0502-01-01 
+                    case_run_0{{last3}}-01-01 => case_st_archive_0{{last3}}-01-01 
+
+                    case_st_archive_0022-01-01 => ocn_averages_0022-01-01 & ice_averages_0022-01-01
+                    ocn_averages_0022-01-01 => ocn_diagnostics_0022-01-01
+                    ice_averages_0022-01-01 => ice_diagnostics_0022-01-01
+                    case_st_archive_0023-01-01 => atm_averages_0023-01-01 & lnd_averages_0023-01-01
+                    atm_averages_0023-01-01 => atm_diagnostics_0023-01-01
+                    lnd_averages_0023-01-01 => lnd_diagnostics_0023-01-01
+                    timeseriesL_0502-01-01 => xconform_0501-01-01
+               """
+[runtime]
+    [[root]]
+        pre-script = "cd /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001"
+
+    {% for I in range(0, ((last3-first3)/years3)|int+1) %}
+    {% set i = first3+(I*years3)  %}
+    {% set j = '0'|string+i|string %}
+
+    [[case_run_{{j}}-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/case.run.cylc
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+                execution retry delays = PT30S, PT120S, PT600S
+        [[[directives]]]
+                -A = CESM0005
+                -q = cmip6rt
+                -N = b.e21.BW1850.f09_g17.CMIP6-piControl.001.run
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l select=98:ncpus=36:mpiprocs=12:ompthreads=3
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    [[case_st_archive_{{j}}-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/case.st_archive
+        [[[job]]]
+                method = pbs
+                execution time limit = PT1H
+        [[[directives]]]
+                -A = CESM0005
+                -q = cmip6rt
+                -N = b.e21.BW1850.f09_g17.CMIP6-piControl.001.st_archive
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=1:mpiprocs=1:ompthreads=6
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    {% endfor %}
+
+
+
+
+    {% for I in range(149, (last2)|int+1) %}
+    {% set i = I  %}
+    {% set j = '0'|string+i|string %}
+
+    [[case_run_{{j}}-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/case.run.cylc
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+                execution retry delays = PT30S, PT120S, PT600S
+        [[[directives]]]
+                -A = CESM0005
+                -q = regular
+                -N = b.e21.BW1850.f09_g17.CMIP6-piControl.001.run
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=98:ncpus=36:mpiprocs=12:ompthreads=3 
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    [[case_st_archive_{{j}}-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/case.st_archive
+        [[[job]]]
+                method = pbs
+                execution time limit = PT1H
+        [[[directives]]]
+                -A = CESM0005
+                -q = share
+                -N = b.e21.BW1850.f09_g17.CMIP6-piControl.001.st_archive
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=1:mpiprocs=1:ompthreads=6
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    {% endfor %}
+
+
+    {% for I in range(0, ((last1-first1)/years1)|int+1) %}
+    {% set i = first1+(I*years1)  %}
+    {% set j = '0'|string+i|string %}
+    {% if i < 100 %}
+    {% set j = '00'|string+i|string %}
+    {% endif %}
+
+    [[case_run_{{j}}-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/case.run.cylc
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+                execution retry delays = PT30S, PT120S, PT600S
+        [[[directives]]]
+                -A = CESM0005
+                -q = regular 
+                -N = b.e21.BW1850.f09_g17.CMIP6-piControl.001.run
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l select=98:ncpus=36:mpiprocs=12:ompthreads=3
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    [[case_st_archive_{{j}}-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/case.st_archive
+        [[[job]]]
+                method = pbs
+                execution time limit = PT1H
+        [[[directives]]]
+                -A = CESM0005
+                -q = R1759387
+                -N = b.e21.BW1850.f09_g17.CMIP6-piControl.001.st_archive
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=1:mpiprocs=1:ompthreads=6
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    {% endfor %}
+
+
+    [[ocn_averages_0022-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/postprocess/ocn_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular 
+                -l = select=4:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    [[ocn_diagnostics_0022-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/postprocess/ocn_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=16:mpiprocs=16
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    [[ice_averages_0022-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/postprocess/ice_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    [[ice_diagnostics_0022-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/postprocess/ice_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=8:mpiprocs=8
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    [[atm_averages_0023-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/postprocess/atm_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular 
+                -l = select=4:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    [[atm_diagnostics_0023-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/postprocess/atm_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular 
+                -l = select=1:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    [[lnd_averages_0023-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/postprocess/lnd_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular 
+                -l = select=4:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    [[lnd_diagnostics_0023-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/postprocess/lnd_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular 
+                -l = select=1:ncpus=16:mpiprocs=16
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+
+    {% for i in range(0,ts_first|length) %}
+    [[set_ts_links_{{ts_trigger[i]}} ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/postprocess/cmip6_link_timeslice b.e21.BW1850.f09_g17.CMIP6-piControl.001 {{ts_first[i]}} {{ts_last[i]}}
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    {% endfor %}
+
+    {% for i in range(0,ts_first|length) %}
+    [[timeseriesL_{{ts_trigger[i]}} ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/postprocess/timeseriesL
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = timeseries
+                -q = regular
+                -l = select=4:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    {% endfor %}
+
+    [[xconform_0501-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/postprocess/xconform
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = xconform
+                -q = regular 
+                -l = select=8:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+
+
+    {% for I in range(18, first1) %}
+    {% set i = I  %}
+    {% set j = '0'|string+i|string %}
+    {% if i < 100 %}
+    {% set j = '00'|string+i|string %}
+    {% endif %}
+    [[case_run_{{j}}-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/case.run.cylc
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -A = CESM0005
+                -q = regular
+                -N = b.e21.BW1850.f09_g17.CMIP6-piControl.001.run
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l select=98:ncpus=36:mpiprocs=12:ompthreads=3
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    [[case_st_archive_{{j}}-01-01 ]]
+        script = /glade/work/cmip6/cases/cesm2.1-exp002/b.e21.BW1850.f09_g17.CMIP6-piControl.001/case.st_archive
+        [[[job]]]
+                method = pbs
+                execution time limit = PT1H
+        [[[directives]]]
+                -A = CESM0005
+                -q = R1759387
+                -N = b.e21.BW1850.f09_g17.CMIP6-piControl.001.st_archive
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=1:mpiprocs=1:ompthreads=6
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+    {% endfor %} 

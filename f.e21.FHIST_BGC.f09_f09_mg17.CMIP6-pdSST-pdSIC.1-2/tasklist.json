@@ -1,0 +1,18 @@
+{
+    "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-pdSST-pdSIC": {
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-pdSST-pdSIC.002": [
+            "case_run_2000-12-06__2", 
+            "case_st_archive_2000-12-06__2", 
+            "timeseriesL_2000-12-06__2", 
+            "ocn_averages_0011-01-01__2", 
+            "ocn_diagnostics_0011-01-01__2"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-pdSST-pdSIC.001": [
+            "case_run_2000-12-06__1", 
+            "case_st_archive_2000-12-06__1", 
+            "timeseriesL_2000-12-06__1", 
+            "ocn_averages_0011-01-01__1", 
+            "ocn_diagnostics_0011-01-01__1"
+        ]
+    }
+}

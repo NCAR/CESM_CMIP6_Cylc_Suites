@@ -1,0 +1,604 @@
+#!Jinja2 
+{% set dates_atm_averages = ['0023-01-01'] %}
+{% set dates_atm_diagnostics = ['0023-01-01'] %}
+{% set dates_case_run = ['0003-01-01', '0005-01-01', '0007-01-01', '0009-01-01', '0011-01-01', '0013-01-01', '0015-01-01', '0017-01-01', '0019-01-01', '0021-01-01', '0023-01-01', '0025-01-01', '0027-01-01', '0029-01-01', '0031-01-01', '0033-01-01', '0035-01-01', '0037-01-01', '0039-01-01', '0041-01-01', '0043-01-01', '0045-01-01', '0047-01-01', '0049-01-01', '0051-01-01', '0053-01-01', '0055-01-01', '0057-01-01', '0059-01-01', '0061-01-01', '0063-01-01', '0065-01-01', '0067-01-01', '0069-01-01', '0071-01-01', '0073-01-01', '0075-01-01', '0077-01-01', '0079-01-01', '0081-01-01', '0083-01-01', '0085-01-01', '0087-01-01', '0089-01-01', '0091-01-01', '0093-01-01', '0095-01-01', '0097-01-01', '0099-01-01', '0101-01-01', '0103-01-01', '0105-01-01', '0107-01-01', '0109-01-01', '0111-01-01', '0113-01-01', '0115-01-01', '0117-01-01', '0119-01-01', '0121-01-01', '0123-01-01', '0125-01-01', '0127-01-01', '0129-01-01', '0131-01-01', '0133-01-01', '0135-01-01', '0137-01-01', '0139-01-01', '0141-01-01', '0143-01-01', '0145-01-01', '0147-01-01', '0149-01-01', '0151-01-01', '0006-01-01', '0008-01-01', '0010-01-01', '0012-01-01', '0014-01-01', '0016-01-01', '0018-01-01', '0020-01-01', '0022-01-01', '0024-01-01', '0026-01-01', '0028-01-01', '0030-01-01', '0032-01-01', '0034-01-01', '0036-01-01', '0038-01-01', '0040-01-01', '0042-01-01', '0044-01-01', '0046-01-01', '0048-01-01', '0050-01-01', '0052-01-01', '0054-01-01', '0056-01-01', '0058-01-01', '0060-01-01', '0062-01-01', '0064-01-01', '0066-01-01', '0068-01-01', '0070-01-01', '0072-01-01', '0074-01-01', '0076-01-01', '0078-01-01', '0080-01-01', '0082-01-01', '0084-01-01', '0086-01-01', '0088-01-01', '0090-01-01', '0092-01-01', '0094-01-01', '0096-01-01', '0098-01-01', '0100-01-01', '0102-01-01', '0104-01-01', '0106-01-01', '0108-01-01', '0110-01-01', '0112-01-01', '0114-01-01', '0116-01-01', '0118-01-01', '0120-01-01', '0122-01-01', '0124-01-01', '0126-01-01', '0128-01-01', '0130-01-01', '0132-01-01', '0134-01-01', '0136-01-01', '0138-01-01', '0140-01-01', '0142-01-01', '0144-01-01', '0146-01-01', '0148-01-01', '0150-01-01'] %}
+{% set dates_case_st_archive = ['0003-01-01', '0005-01-01', '0007-01-01', '0009-01-01', '0011-01-01', '0013-01-01', '0015-01-01', '0017-01-01', '0019-01-01', '0021-01-01', '0023-01-01', '0025-01-01', '0027-01-01', '0029-01-01', '0031-01-01', '0033-01-01', '0035-01-01', '0037-01-01', '0039-01-01', '0041-01-01', '0043-01-01', '0045-01-01', '0047-01-01', '0049-01-01', '0051-01-01', '0053-01-01', '0055-01-01', '0057-01-01', '0059-01-01', '0061-01-01', '0063-01-01', '0065-01-01', '0067-01-01', '0069-01-01', '0071-01-01', '0073-01-01', '0075-01-01', '0077-01-01', '0079-01-01', '0081-01-01', '0083-01-01', '0085-01-01', '0087-01-01', '0089-01-01', '0091-01-01', '0093-01-01', '0095-01-01', '0097-01-01', '0099-01-01', '0101-01-01', '0103-01-01', '0105-01-01', '0107-01-01', '0109-01-01', '0111-01-01', '0113-01-01', '0115-01-01', '0117-01-01', '0119-01-01', '0121-01-01', '0123-01-01', '0125-01-01', '0127-01-01', '0129-01-01', '0131-01-01', '0133-01-01', '0135-01-01', '0137-01-01', '0139-01-01', '0141-01-01', '0143-01-01', '0145-01-01', '0147-01-01', '0149-01-01', '0151-01-01', '0006-01-01', '0008-01-01', '0010-01-01', '0012-01-01', '0014-01-01', '0016-01-01', '0018-01-01', '0020-01-01', '0022-01-01', '0024-01-01', '0026-01-01', '0028-01-01', '0030-01-01', '0032-01-01', '0034-01-01', '0036-01-01', '0038-01-01', '0040-01-01', '0042-01-01', '0044-01-01', '0046-01-01', '0048-01-01', '0050-01-01', '0052-01-01', '0054-01-01', '0056-01-01', '0058-01-01', '0060-01-01', '0062-01-01', '0064-01-01', '0066-01-01', '0068-01-01', '0070-01-01', '0072-01-01', '0074-01-01', '0076-01-01', '0078-01-01', '0080-01-01', '0082-01-01', '0084-01-01', '0086-01-01', '0088-01-01', '0090-01-01', '0092-01-01', '0094-01-01', '0096-01-01', '0098-01-01', '0100-01-01', '0102-01-01', '0104-01-01', '0106-01-01', '0108-01-01', '0110-01-01', '0112-01-01', '0114-01-01', '0116-01-01', '0118-01-01', '0120-01-01', '0122-01-01', '0124-01-01', '0126-01-01', '0128-01-01', '0130-01-01', '0132-01-01', '0134-01-01', '0136-01-01', '0138-01-01', '0140-01-01', '0142-01-01', '0144-01-01', '0146-01-01', '0148-01-01', '0150-01-01'] %}
+{% set dates_ice_averages = ['0022-01-01'] %}
+{% set dates_ice_diagnostics = ['0022-01-01'] %}
+{% set dates_lnd_averages = ['0023-01-01'] %}
+{% set dates_lnd_diagnostics = ['0023-01-01'] %}
+{% set dates_ocn_averages = ['0022-01-01'] %}
+{% set dates_ocn_diagnostics = ['0022-01-01'] %}
+{% set ts_first = ['1', '50', '100'] %}
+{% set ts_last = ['49', '99', '151'] %}
+{% set dates_timeseriesL = ['0051-01-01', '0101-01-01', '0151-01-01'] %}
+{% set dates_xconform = ['0151-01-01'] %}
+{% set ATMDIAG_test_first_yr = [2] %}
+{% set ATMDIAG_test_nyrs = [20] %}
+{% set OCNDIAG_YEAR0 = [2] %}
+{% set OCNDIAG_YEAR1 = [21] %}
+{% set OCNDIAG_TSERIES_YEAR0 = [2] %}
+{% set OCNDIAG_TSERIES_YEAR1 = [4] %}
+{% set LNDDIAG_clim_first_yr_1 = [2] %}
+{% set LNDDIAG_trends_first_yr_1 = [2] %}
+{% set LNDDIAG_clim_num_yrs_1 = [20] %}
+{% set LNDDIAG_trends_num_yrs_1 = [20] %}
+{% set ICEDIAG_BEGYR_DIFF = [2] %}
+{% set ICEDIAG_ENDYR_DIFF = [21] %}
+{% set ICEDIAG_BEGYR_CONT = [2] %}
+{% set ICEDIAG_ENDYR_CONT = [4] %}
+{% set ICEDIAG_YRS_TO_AVG = [19] %}
+title = b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001 workflow 
+[cylc]
+    [[environment]]
+        MAIL_ADDRESS=tilmes@ucar.edu,mmills@ucar.edu,mickelso@ucar.edu,expdb@cgd.ucar.edu
+    [[event hooks]]
+        shutdown handler = cylc email-suite
+[scheduling]
+    [[dependencies]]
+        graph = """
+                    case_st_archive_0023-01-01 => atm_averages_0023-01-01 & ocn_averages_0022-01-01 & lnd_averages_0023-01-01 & ice_averages_0022-01-01
+                    atm_averages_0023-01-01 => atm_diagnostics_0023-01-01 => atm_diagnostics_0023-01-01_post
+                    ocn_averages_0022-01-01 => ocn_diagnostics_0022-01-01 => ocn_diagnostics_0022-01-01_post
+                    lnd_averages_0023-01-01 => lnd_diagnostics_0023-01-01 => lnd_diagnostics_0023-01-01_post
+                    ice_averages_0022-01-01 => ice_diagnostics_0022-01-01 => ice_diagnostics_0022-01-01_post
+                    case_run_0003-01-01 => case_st_archive_0003-01-01
+                    case_st_archive_0003-01-01 => case_run_0005-01-01
+                    case_run_0005-01-01 => case_st_archive_0005-01-01
+                    case_st_archive_0005-01-01 => case_run_0006-01-01
+                    case_run_0006-01-01 => case_st_archive_0006-01-01
+                    case_st_archive_0006-01-01 => case_run_0007-01-01
+                    case_run_0007-01-01 => case_st_archive_0007-01-01
+                    case_st_archive_0007-01-01 => case_run_0008-01-01
+                    case_run_0008-01-01 => case_st_archive_0008-01-01
+                    case_st_archive_0008-01-01 => case_run_0009-01-01
+                    case_run_0009-01-01 => case_st_archive_0009-01-01
+                    case_st_archive_0009-01-01 => case_run_0010-01-01
+                    case_run_0010-01-01 => case_st_archive_0010-01-01
+                    case_st_archive_0010-01-01 => case_run_0011-01-01
+                    case_run_0011-01-01 => case_st_archive_0011-01-01
+                    case_st_archive_0011-01-01 => case_run_0012-01-01
+                    case_run_0012-01-01 => case_st_archive_0012-01-01
+                    case_st_archive_0012-01-01 => case_run_0013-01-01
+                    case_run_0013-01-01 => case_st_archive_0013-01-01
+                    case_st_archive_0013-01-01 => case_run_0014-01-01
+                    case_run_0014-01-01 => case_st_archive_0014-01-01
+                    case_st_archive_0014-01-01 => case_run_0015-01-01
+                    case_run_0015-01-01 => case_st_archive_0015-01-01
+                    case_st_archive_0015-01-01 => case_run_0016-01-01
+                    case_run_0016-01-01 => case_st_archive_0016-01-01
+                    case_st_archive_0016-01-01 => case_run_0017-01-01
+                    case_run_0017-01-01 => case_st_archive_0017-01-01
+                    case_st_archive_0017-01-01 => case_run_0018-01-01
+                    case_run_0018-01-01 => case_st_archive_0018-01-01
+                    case_st_archive_0018-01-01 => case_run_0019-01-01
+                    case_run_0019-01-01 => case_st_archive_0019-01-01
+                    case_st_archive_0019-01-01 => case_run_0020-01-01
+                    case_run_0020-01-01 => case_st_archive_0020-01-01
+                    case_st_archive_0020-01-01 => case_run_0021-01-01
+                    case_run_0021-01-01 => case_st_archive_0021-01-01
+                    case_st_archive_0021-01-01 => case_run_0022-01-01
+                    case_run_0022-01-01 => case_st_archive_0022-01-01
+                    case_st_archive_0022-01-01 => case_run_0023-01-01
+                    case_run_0023-01-01 => case_st_archive_0023-01-01
+                    case_st_archive_0023-01-01 => case_run_0024-01-01
+                    case_run_0024-01-01 => case_st_archive_0024-01-01
+                    case_st_archive_0024-01-01 => case_run_0025-01-01
+                    case_run_0025-01-01 => case_st_archive_0025-01-01
+                    case_st_archive_0025-01-01 => case_run_0026-01-01
+                    case_run_0026-01-01 => case_st_archive_0026-01-01
+                    case_st_archive_0026-01-01 => case_run_0027-01-01
+                    case_run_0027-01-01 => case_st_archive_0027-01-01
+                    case_st_archive_0027-01-01 => case_run_0028-01-01
+                    case_run_0028-01-01 => case_st_archive_0028-01-01
+                    case_st_archive_0028-01-01 => case_run_0029-01-01
+                    case_run_0029-01-01 => case_st_archive_0029-01-01
+                    case_st_archive_0029-01-01 => case_run_0030-01-01
+                    case_run_0030-01-01 => case_st_archive_0030-01-01
+                    case_st_archive_0030-01-01 => case_run_0031-01-01
+                    case_run_0031-01-01 => case_st_archive_0031-01-01
+                    case_st_archive_0031-01-01 => case_run_0032-01-01
+                    case_run_0032-01-01 => case_st_archive_0032-01-01
+                    case_st_archive_0032-01-01 => case_run_0033-01-01
+                    case_run_0033-01-01 => case_st_archive_0033-01-01
+                    case_st_archive_0033-01-01 => case_run_0034-01-01
+                    case_run_0034-01-01 => case_st_archive_0034-01-01
+                    case_st_archive_0034-01-01 => case_run_0035-01-01
+                    case_run_0035-01-01 => case_st_archive_0035-01-01
+                    case_st_archive_0035-01-01 => case_run_0036-01-01
+                    case_run_0036-01-01 => case_st_archive_0036-01-01
+                    case_st_archive_0036-01-01 => case_run_0037-01-01
+                    case_run_0037-01-01 => case_st_archive_0037-01-01
+                    case_st_archive_0037-01-01 => case_run_0038-01-01
+                    case_run_0038-01-01 => case_st_archive_0038-01-01
+                    case_st_archive_0038-01-01 => case_run_0039-01-01
+                    case_run_0039-01-01 => case_st_archive_0039-01-01
+                    case_st_archive_0039-01-01 => case_run_0040-01-01
+                    case_run_0040-01-01 => case_st_archive_0040-01-01
+                    case_st_archive_0040-01-01 => case_run_0041-01-01
+                    case_run_0041-01-01 => case_st_archive_0041-01-01
+                    case_st_archive_0041-01-01 => case_run_0042-01-01
+                    case_run_0042-01-01 => case_st_archive_0042-01-01
+                    case_st_archive_0042-01-01 => case_run_0043-01-01
+                    case_run_0043-01-01 => case_st_archive_0043-01-01
+                    case_st_archive_0043-01-01 => case_run_0044-01-01
+                    case_run_0044-01-01 => case_st_archive_0044-01-01
+                    case_st_archive_0044-01-01 => case_run_0045-01-01
+                    case_run_0045-01-01 => case_st_archive_0045-01-01
+                    case_st_archive_0045-01-01 => case_run_0046-01-01
+                    case_run_0046-01-01 => case_st_archive_0046-01-01
+                    case_st_archive_0046-01-01 => case_run_0047-01-01
+                    case_run_0047-01-01 => case_st_archive_0047-01-01
+                    case_st_archive_0047-01-01 => case_run_0048-01-01
+                    case_run_0048-01-01 => case_st_archive_0048-01-01
+                    case_st_archive_0048-01-01 => case_run_0049-01-01
+                    case_run_0049-01-01 => case_st_archive_0049-01-01
+                    case_st_archive_0049-01-01 => case_run_0050-01-01
+                    case_run_0050-01-01 => case_st_archive_0050-01-01
+                    case_st_archive_0050-01-01 => case_run_0051-01-01
+                    case_run_0051-01-01 => case_st_archive_0051-01-01
+                    case_st_archive_0051-01-01 => case_run_0052-01-01 & set_ts_links_0051-01-01
+                    set_ts_links_0051-01-01 => timeseriesL_0051-01-01
+                    case_run_0052-01-01 => case_st_archive_0052-01-01
+                    case_st_archive_0052-01-01 => case_run_0053-01-01
+                    case_run_0053-01-01 => case_st_archive_0053-01-01
+                    case_st_archive_0053-01-01 => case_run_0054-01-01
+                    case_run_0054-01-01 => case_st_archive_0054-01-01
+                    case_st_archive_0054-01-01 => case_run_0055-01-01
+                    case_run_0055-01-01 => case_st_archive_0055-01-01
+                    case_st_archive_0055-01-01 => case_run_0056-01-01
+                    case_run_0056-01-01 => case_st_archive_0056-01-01
+                    case_st_archive_0056-01-01 => case_run_0057-01-01
+                    case_run_0057-01-01 => case_st_archive_0057-01-01
+                    case_st_archive_0057-01-01 => case_run_0058-01-01
+                    case_run_0058-01-01 => case_st_archive_0058-01-01
+                    case_st_archive_0058-01-01 => case_run_0059-01-01
+                    case_run_0059-01-01 => case_st_archive_0059-01-01
+                    case_st_archive_0059-01-01 => case_run_0060-01-01
+                    case_run_0060-01-01 => case_st_archive_0060-01-01
+                    case_st_archive_0060-01-01 => case_run_0061-01-01
+                    case_run_0061-01-01 => case_st_archive_0061-01-01
+                    case_st_archive_0061-01-01 => case_run_0062-01-01
+                    case_run_0062-01-01 => case_st_archive_0062-01-01
+                    case_st_archive_0062-01-01 => case_run_0063-01-01
+                    case_run_0063-01-01 => case_st_archive_0063-01-01
+                    case_st_archive_0063-01-01 => case_run_0064-01-01
+                    case_run_0064-01-01 => case_st_archive_0064-01-01
+                    case_st_archive_0064-01-01 => case_run_0065-01-01
+                    case_run_0065-01-01 => case_st_archive_0065-01-01
+                    case_st_archive_0065-01-01 => case_run_0066-01-01
+                    case_run_0066-01-01 => case_st_archive_0066-01-01
+                    case_st_archive_0066-01-01 => case_run_0067-01-01
+                    case_run_0067-01-01 => case_st_archive_0067-01-01
+                    case_st_archive_0067-01-01 => case_run_0068-01-01
+                    case_run_0068-01-01 => case_st_archive_0068-01-01
+                    case_st_archive_0068-01-01 => case_run_0069-01-01
+                    case_run_0069-01-01 => case_st_archive_0069-01-01
+                    case_st_archive_0069-01-01 => case_run_0070-01-01
+                    case_run_0070-01-01 => case_st_archive_0070-01-01
+                    case_st_archive_0070-01-01 => case_run_0071-01-01
+                    case_run_0071-01-01 => case_st_archive_0071-01-01
+                    case_st_archive_0071-01-01 => case_run_0072-01-01
+                    case_run_0072-01-01 => case_st_archive_0072-01-01
+                    case_st_archive_0072-01-01 => case_run_0073-01-01
+                    case_run_0073-01-01 => case_st_archive_0073-01-01
+                    case_st_archive_0073-01-01 => case_run_0074-01-01
+                    case_run_0074-01-01 => case_st_archive_0074-01-01
+                    case_st_archive_0074-01-01 => case_run_0075-01-01
+                    case_run_0075-01-01 => case_st_archive_0075-01-01
+                    case_st_archive_0075-01-01 => case_run_0076-01-01
+                    case_run_0076-01-01 => case_st_archive_0076-01-01
+                    case_st_archive_0076-01-01 => case_run_0077-01-01
+                    case_run_0077-01-01 => case_st_archive_0077-01-01
+                    case_st_archive_0077-01-01 => case_run_0078-01-01
+                    case_run_0078-01-01 => case_st_archive_0078-01-01
+                    case_st_archive_0078-01-01 => case_run_0079-01-01
+                    case_run_0079-01-01 => case_st_archive_0079-01-01
+                    case_st_archive_0079-01-01 => case_run_0080-01-01
+                    case_run_0080-01-01 => case_st_archive_0080-01-01
+                    case_st_archive_0080-01-01 => case_run_0081-01-01
+                    case_run_0081-01-01 => case_st_archive_0081-01-01
+                    case_st_archive_0081-01-01 => case_run_0082-01-01
+                    case_run_0082-01-01 => case_st_archive_0082-01-01
+                    case_st_archive_0082-01-01 => case_run_0083-01-01
+                    case_run_0083-01-01 => case_st_archive_0083-01-01
+                    case_st_archive_0083-01-01 => case_run_0084-01-01
+                    case_run_0084-01-01 => case_st_archive_0084-01-01
+                    case_st_archive_0084-01-01 => case_run_0085-01-01
+                    case_run_0085-01-01 => case_st_archive_0085-01-01
+                    case_st_archive_0085-01-01 => case_run_0086-01-01
+                    case_run_0086-01-01 => case_st_archive_0086-01-01
+                    case_st_archive_0086-01-01 => case_run_0087-01-01
+                    case_run_0087-01-01 => case_st_archive_0087-01-01
+                    case_st_archive_0087-01-01 => case_run_0088-01-01
+                    case_run_0088-01-01 => case_st_archive_0088-01-01
+                    case_st_archive_0088-01-01 => case_run_0089-01-01
+                    case_run_0089-01-01 => case_st_archive_0089-01-01
+                    case_st_archive_0089-01-01 => case_run_0090-01-01
+                    case_run_0090-01-01 => case_st_archive_0090-01-01
+                    case_st_archive_0090-01-01 => case_run_0091-01-01
+                    case_run_0091-01-01 => case_st_archive_0091-01-01
+                    case_st_archive_0091-01-01 => case_run_0092-01-01
+                    case_run_0092-01-01 => case_st_archive_0092-01-01
+                    case_st_archive_0092-01-01 => case_run_0093-01-01
+                    case_run_0093-01-01 => case_st_archive_0093-01-01
+                    case_st_archive_0093-01-01 => case_run_0094-01-01
+                    case_run_0094-01-01 => case_st_archive_0094-01-01
+                    case_st_archive_0094-01-01 => case_run_0095-01-01
+                    case_run_0095-01-01 => case_st_archive_0095-01-01
+                    case_st_archive_0095-01-01 => case_run_0096-01-01
+                    case_run_0096-01-01 => case_st_archive_0096-01-01
+                    case_st_archive_0096-01-01 => case_run_0097-01-01
+                    case_run_0097-01-01 => case_st_archive_0097-01-01
+                    case_st_archive_0097-01-01 => case_run_0098-01-01
+                    case_run_0098-01-01 => case_st_archive_0098-01-01
+                    case_st_archive_0098-01-01 => case_run_0099-01-01
+                    case_run_0099-01-01 => case_st_archive_0099-01-01
+                    case_st_archive_0099-01-01 => case_run_0100-01-01
+                    case_run_0100-01-01 => case_st_archive_0100-01-01
+                    case_st_archive_0100-01-01 => case_run_0101-01-01
+                    case_run_0101-01-01 => case_st_archive_0101-01-01
+                    case_st_archive_0101-01-01 => case_run_0102-01-01 & set_ts_links_0101-01-01
+                    set_ts_links_0101-01-01 => timeseriesL_0101-01-01
+                    case_run_0102-01-01 => case_st_archive_0102-01-01
+                    case_st_archive_0102-01-01 => case_run_0103-01-01
+                    case_run_0103-01-01 => case_st_archive_0103-01-01
+                    case_st_archive_0103-01-01 => case_run_0104-01-01
+                    case_run_0104-01-01 => case_st_archive_0104-01-01
+                    case_st_archive_0104-01-01 => case_run_0105-01-01
+                    case_run_0105-01-01 => case_st_archive_0105-01-01
+                    case_st_archive_0105-01-01 => case_run_0106-01-01
+                    case_run_0106-01-01 => case_st_archive_0106-01-01
+                    case_st_archive_0106-01-01 => case_run_0107-01-01
+                    case_run_0107-01-01 => case_st_archive_0107-01-01
+                    case_st_archive_0107-01-01 => case_run_0108-01-01
+                    case_run_0108-01-01 => case_st_archive_0108-01-01
+                    case_st_archive_0108-01-01 => case_run_0109-01-01
+                    case_run_0109-01-01 => case_st_archive_0109-01-01
+                    case_st_archive_0109-01-01 => case_run_0110-01-01
+                    case_run_0110-01-01 => case_st_archive_0110-01-01
+                    case_st_archive_0110-01-01 => case_run_0111-01-01
+                    case_run_0111-01-01 => case_st_archive_0111-01-01
+                    case_st_archive_0111-01-01 => case_run_0112-01-01
+                    case_run_0112-01-01 => case_st_archive_0112-01-01
+                    case_st_archive_0112-01-01 => case_run_0113-01-01
+                    case_run_0113-01-01 => case_st_archive_0113-01-01
+                    case_st_archive_0113-01-01 => case_run_0114-01-01
+                    case_run_0114-01-01 => case_st_archive_0114-01-01
+                    case_st_archive_0114-01-01 => case_run_0115-01-01
+                    case_run_0115-01-01 => case_st_archive_0115-01-01
+                    case_st_archive_0115-01-01 => case_run_0116-01-01
+                    case_run_0116-01-01 => case_st_archive_0116-01-01
+                    case_st_archive_0116-01-01 => case_run_0117-01-01
+                    case_run_0117-01-01 => case_st_archive_0117-01-01
+                    case_st_archive_0117-01-01 => case_run_0118-01-01
+                    case_run_0118-01-01 => case_st_archive_0118-01-01
+                    case_st_archive_0118-01-01 => case_run_0119-01-01
+                    case_run_0119-01-01 => case_st_archive_0119-01-01
+                    case_st_archive_0119-01-01 => case_run_0120-01-01
+                    case_run_0120-01-01 => case_st_archive_0120-01-01
+                    case_st_archive_0120-01-01 => case_run_0121-01-01
+                    case_run_0121-01-01 => case_st_archive_0121-01-01
+                    case_st_archive_0121-01-01 => case_run_0122-01-01
+                    case_run_0122-01-01 => case_st_archive_0122-01-01
+                    case_st_archive_0122-01-01 => case_run_0123-01-01
+                    case_run_0123-01-01 => case_st_archive_0123-01-01
+                    case_st_archive_0123-01-01 => case_run_0124-01-01
+                    case_run_0124-01-01 => case_st_archive_0124-01-01
+                    case_st_archive_0124-01-01 => case_run_0125-01-01
+                    case_run_0125-01-01 => case_st_archive_0125-01-01
+                    case_st_archive_0125-01-01 => case_run_0126-01-01
+                    case_run_0126-01-01 => case_st_archive_0126-01-01
+                    case_st_archive_0126-01-01 => case_run_0127-01-01
+                    case_run_0127-01-01 => case_st_archive_0127-01-01
+                    case_st_archive_0127-01-01 => case_run_0128-01-01
+                    case_run_0128-01-01 => case_st_archive_0128-01-01
+                    case_st_archive_0128-01-01 => case_run_0129-01-01
+                    case_run_0129-01-01 => case_st_archive_0129-01-01
+                    case_st_archive_0129-01-01 => case_run_0130-01-01
+                    case_run_0130-01-01 => case_st_archive_0130-01-01
+                    case_st_archive_0130-01-01 => case_run_0131-01-01
+                    case_run_0131-01-01 => case_st_archive_0131-01-01
+                    case_st_archive_0131-01-01 => case_run_0132-01-01
+                    case_run_0132-01-01 => case_st_archive_0132-01-01
+                    case_st_archive_0132-01-01 => case_run_0133-01-01
+                    case_run_0133-01-01 => case_st_archive_0133-01-01
+                    case_st_archive_0133-01-01 => case_run_0134-01-01
+                    case_run_0134-01-01 => case_st_archive_0134-01-01
+                    case_st_archive_0134-01-01 => case_run_0135-01-01
+                    case_run_0135-01-01 => case_st_archive_0135-01-01
+                    case_st_archive_0135-01-01 => case_run_0136-01-01
+                    case_run_0136-01-01 => case_st_archive_0136-01-01
+                    case_st_archive_0136-01-01 => case_run_0137-01-01
+                    case_run_0137-01-01 => case_st_archive_0137-01-01
+                    case_st_archive_0137-01-01 => case_run_0138-01-01
+                    case_run_0138-01-01 => case_st_archive_0138-01-01
+                    case_st_archive_0138-01-01 => case_run_0139-01-01
+                    case_run_0139-01-01 => case_st_archive_0139-01-01
+                    case_st_archive_0139-01-01 => case_run_0140-01-01
+                    case_run_0140-01-01 => case_st_archive_0140-01-01
+                    case_st_archive_0140-01-01 => case_run_0141-01-01
+                    case_run_0141-01-01 => case_st_archive_0141-01-01
+                    case_st_archive_0141-01-01 => case_run_0142-01-01
+                    case_run_0142-01-01 => case_st_archive_0142-01-01
+                    case_st_archive_0142-01-01 => case_run_0143-01-01
+                    case_run_0143-01-01 => case_st_archive_0143-01-01
+                    case_st_archive_0143-01-01 => case_run_0144-01-01
+                    case_run_0144-01-01 => case_st_archive_0144-01-01
+                    case_st_archive_0144-01-01 => case_run_0145-01-01
+                    case_run_0145-01-01 => case_st_archive_0145-01-01
+                    case_st_archive_0145-01-01 => case_run_0146-01-01
+                    case_run_0146-01-01 => case_st_archive_0146-01-01
+                    case_st_archive_0146-01-01 => case_run_0147-01-01
+                    case_run_0147-01-01 => case_st_archive_0147-01-01
+                    case_st_archive_0147-01-01 => case_run_0148-01-01
+                    case_run_0148-01-01 => case_st_archive_0148-01-01
+                    case_st_archive_0148-01-01 => case_run_0149-01-01
+                    case_run_0149-01-01 => case_st_archive_0149-01-01
+                    case_st_archive_0149-01-01 => case_run_0150-01-01
+                    case_run_0150-01-01 => case_st_archive_0150-01-01
+                    case_st_archive_0150-01-01 => case_run_0151-01-01                    
+                    case_run_0151-01-01 => case_st_archive_0151-01-01
+                    case_st_archive_0151-01-01 => set_ts_links_0151-01-01 
+                    set_ts_links_0151-01-01 => timeseriesL_0151-01-01
+                    timeseriesL_0151-01-01 => xconform_0151-01-01
+               """
+[runtime]
+    [[root]]
+        [[[environment]]]
+        {% for i in range(0,dates_atm_averages|length) %}
+        [[atm_averages_{{dates_atm_averages[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/; ./pp_config --set ATMDIAG_test_first_yr={{ATMDIAG_test_first_yr[i]}}; ./pp_config --set ATMDIAG_test_nyrs={{ATMDIAG_test_nyrs[i]}};  /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/atm_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_atm_diagnostics|length) %}
+        [[atm_diagnostics_{{dates_atm_diagnostics[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001; /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/atm_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_atm_diagnostics|length) %}
+        [[atm_diagnostics_{{dates_atm_diagnostics[i]}}_post ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/; /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_case_run|length) %}
+        [[case_run_{{dates_case_run[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001; /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/case.run.cylc
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+                execution retry delays = PT30S, PT120S, PT600S
+        [[[directives]]]
+                -A = CESM0005
+                -q = regular
+                -N = b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001.run
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=100:ncpus=36:mpiprocs=12:ompthreads=3
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_case_st_archive|length) %}
+        [[case_st_archive_{{dates_case_st_archive[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001; /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/case.st_archive.cylc
+        [[[job]]]
+                method = pbs
+                execution time limit = PT1H
+        [[[directives]]]
+                -A = CESM0005
+                -q = regular
+                -N = b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001.st_archive
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=1:mpiprocs=1:ompthreads=3
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ice_averages|length) %}
+        [[ice_averages_{{dates_ice_averages[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/; ./pp_config --set ICEDIAG_BEGYR_DIFF={{ICEDIAG_BEGYR_DIFF[i]}}; ./pp_config --set ICEDIAG_ENDYR_DIFF={{ICEDIAG_ENDYR_DIFF[i]}}; ./pp_config --set ICEDIAG_BEGYR_CONT={{ICEDIAG_BEGYR_CONT[i]}}; ./pp_config --set ICEDIAG_ENDYR_CONT={{ICEDIAG_ENDYR_CONT[i]}}; ./pp_config --set ICEDIAG_YRS_TO_AVG={{ICEDIAG_YRS_TO_AVG[i]}};  /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/ice_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ice_diagnostics|length) %}
+        [[ice_diagnostics_{{dates_ice_diagnostics[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001; /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/ice_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=8:mpiprocs=8
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ice_diagnostics|length) %}
+        [[ice_diagnostics_{{dates_ice_diagnostics[i]}}_post ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/; /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_lnd_averages|length) %}
+        [[lnd_averages_{{dates_lnd_averages[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/; ./pp_config --set LNDDIAG_clim_first_yr_1={{LNDDIAG_clim_first_yr_1[i]}}; ./pp_config --set LNDDIAG_trends_first_yr_1={{LNDDIAG_trends_first_yr_1[i]}}; ./pp_config --set LNDDIAG_clim_num_yrs_1={{LNDDIAG_clim_num_yrs_1[i]}}; ./pp_config --set LNDDIAG_trends_num_yrs_1={{LNDDIAG_trends_num_yrs_1[i]}};  /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/lnd_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_lnd_diagnostics|length) %}
+        [[lnd_diagnostics_{{dates_lnd_diagnostics[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001; /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/lnd_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=16:mpiprocs=16
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_lnd_diagnostics|length) %}
+        [[lnd_diagnostics_{{dates_lnd_diagnostics[i]}}_post ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/; /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_averages|length) %}
+        [[ocn_averages_{{dates_ocn_averages[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/; ./pp_config --set OCNDIAG_YEAR0={{OCNDIAG_YEAR0[i]}}; ./pp_config --set OCNDIAG_YEAR1={{OCNDIAG_YEAR1[i]}}; ./pp_config --set OCNDIAG_TSERIES_YEAR0={{OCNDIAG_TSERIES_YEAR0[i]}}; ./pp_config --set OCNDIAG_TSERIES_YEAR1={{OCNDIAG_TSERIES_YEAR1[i]}};  /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/ocn_averages
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_diagnostics|length) %}
+        [[ocn_diagnostics_{{dates_ocn_diagnostics[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001; /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/ocn_diagnostics
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=16:mpiprocs=16
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_diagnostics|length) %}
+        [[ocn_diagnostics_{{dates_ocn_diagnostics[i]}}_post ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/; /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/copy_html
+        {% endfor %}
+
+     {% for i in range(0,ts_first|length) %}
+     [[set_ts_links_{{dates_timeseriesL[i]}} ]]
+         script = /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/cmip6_link_timeslice b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001 {{ts_first[i]}} {{ts_last[i]}}
+         [[[event hooks]]]
+                 started handler = cylc email-suite
+                 succeeded handler = cylc email-suite
+                 failed handler = cylc email-suite
+     {% endfor %}
+
+
+        {% for i in range(0,dates_timeseriesL|length) %}
+        [[timeseriesL_{{dates_timeseriesL[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001; /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/timeseriesL
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = timeseries
+                -q = regular
+                -l = select=16:ncpus=9:mpiprocs=9
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_xconform|length) %}
+        [[xconform_{{dates_xconform[i]}} ]]
+        script = cd /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001; /gpfs/fs1/work/cmip6/cases/DECK_WACCM/b.e21.BW1PCT.f09_g17.CMIP6-1pctCO2-WACCM.001/postprocess/xconform
+        [[[job]]]
+                method = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = xconform
+                -q = regular
+                -l = select=16:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[event hooks]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+

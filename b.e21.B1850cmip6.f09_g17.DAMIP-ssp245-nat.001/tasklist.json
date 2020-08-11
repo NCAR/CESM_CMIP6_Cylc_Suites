@@ -1,0 +1,14 @@
+{
+    "b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-nat.001": {
+        "b.e21.B1850cmip6.f09_g17.DAMIP-ssp245-nat.001": [
+            "case_run_2021-01-01", 
+            "case_st_archive_2021-01-01", 
+            "timeseriesL_2021-01-01", 
+            "xconform_2021-01-01", 
+            "ocn_averages_2021-01-01", 
+            "ocn_diagnostics_2021-01-01", 
+            "ice_averages_2021-01-01", 
+            "ice_diagnostics_2021-01-01"
+        ]
+    }
+}

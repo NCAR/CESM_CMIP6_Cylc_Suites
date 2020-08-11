@@ -1,0 +1,42 @@
+{
+    "f.e21.F1850_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-anthro.001": {
+        "f.e21.F1850_BGC.f09_f09_mg17.CMIP6-RFMIP-ERF-anthro.001": [
+            "case_run_0004-01-01", 
+            "case_st_archive_0004-01-01", 
+            "case_run_0007-01-01", 
+            "case_st_archive_0007-01-01", 
+            "case_run_0010-01-01", 
+            "case_st_archive_0010-01-01", 
+            "case_run_0013-01-01", 
+            "case_st_archive_0013-01-01", 
+            "atm_averages_0012-01-01", 
+            "atm_diagnostics_0012-01-01", 
+            "ocn_averages_0011-01-01", 
+            "ocn_diagnostics_0011-01-01", 
+            "lnd_averages_0012-01-01", 
+            "lnd_diagnostics_0012-01-01", 
+            "case_run_0016-01-01", 
+            "case_st_archive_0016-01-01", 
+            "case_run_0019-01-01", 
+            "case_st_archive_0019-01-01", 
+            "case_run_0022-01-01", 
+            "case_st_archive_0022-01-01", 
+            "atm_averages_0022-01-01", 
+            "atm_diagnostics_0022-01-01", 
+            "lnd_averages_0022-01-01", 
+            "lnd_diagnostics_0022-01-01", 
+            "case_run_0025-01-01", 
+            "case_st_archive_0025-01-01", 
+            "case_run_0028-01-01", 
+            "case_st_archive_0028-01-01", 
+            "case_run_0031-01-01", 
+            "case_st_archive_0031-01-01", 
+            "timeseriesL_0031-01-01", 
+            "xconform_0031-01-01", 
+            "atm_averages_0031-01-01", 
+            "atm_diagnostics_0031-01-01", 
+            "lnd_averages_0031-01-01", 
+            "lnd_diagnostics_0031-01-01"
+        ]
+    }
+}

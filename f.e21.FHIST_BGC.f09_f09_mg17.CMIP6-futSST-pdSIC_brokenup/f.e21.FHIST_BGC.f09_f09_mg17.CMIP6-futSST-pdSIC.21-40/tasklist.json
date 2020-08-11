@@ -1,0 +1,164 @@
+{
+    "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC": {
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.020": [
+            "case_run_2001-06-01__20", 
+            "case_st_archive_2001-06-01__20", 
+            "timeseriesL_2001-06-01__20", 
+            "xconform_2001-06-01__20", 
+            "ocn_averages_0011-01-01__20", 
+            "ocn_diagnostics_0011-01-01__20"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.019": [
+            "case_run_2001-06-01__19", 
+            "case_st_archive_2001-06-01__19", 
+            "timeseriesL_2001-06-01__19", 
+            "xconform_2001-06-01__19", 
+            "ocn_averages_0011-01-01__19", 
+            "ocn_diagnostics_0011-01-01__19"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.014": [
+            "case_run_2001-06-01__14", 
+            "case_st_archive_2001-06-01__14", 
+            "timeseriesL_2001-06-01__14", 
+            "xconform_2001-06-01__14", 
+            "ocn_averages_0011-01-01__14", 
+            "ocn_diagnostics_0011-01-01__14"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.017": [
+            "case_run_2001-06-01__17", 
+            "case_st_archive_2001-06-01__17", 
+            "timeseriesL_2001-06-01__17", 
+            "xconform_2001-06-01__17", 
+            "ocn_averages_0011-01-01__17", 
+            "ocn_diagnostics_0011-01-01__17"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.016": [
+            "case_run_2001-06-01__16", 
+            "case_st_archive_2001-06-01__16", 
+            "timeseriesL_2001-06-01__16", 
+            "xconform_2001-06-01__16", 
+            "ocn_averages_0011-01-01__16", 
+            "ocn_diagnostics_0011-01-01__16"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.015": [
+            "case_run_2001-06-01__15", 
+            "case_st_archive_2001-06-01__15", 
+            "timeseriesL_2001-06-01__15", 
+            "xconform_2001-06-01__15", 
+            "ocn_averages_0011-01-01__15", 
+            "ocn_diagnostics_0011-01-01__15"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.018": [
+            "case_run_2001-06-01__18", 
+            "case_st_archive_2001-06-01__18", 
+            "timeseriesL_2001-06-01__18", 
+            "xconform_2001-06-01__18", 
+            "ocn_averages_0011-01-01__18", 
+            "ocn_diagnostics_0011-01-01__18"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.010": [
+            "case_run_2001-06-01__10", 
+            "case_st_archive_2001-06-01__10", 
+            "timeseriesL_2001-06-01__10", 
+            "xconform_2001-06-01__10", 
+            "ocn_averages_0011-01-01__10", 
+            "ocn_diagnostics_0011-01-01__10"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.009": [
+            "case_run_2001-06-01__9", 
+            "case_st_archive_2001-06-01__9", 
+            "timeseriesL_2001-06-01__9", 
+            "xconform_2001-06-01__9", 
+            "ocn_averages_0011-01-01__9", 
+            "ocn_diagnostics_0011-01-01__9"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.008": [
+            "case_run_2001-06-01__8", 
+            "case_st_archive_2001-06-01__8", 
+            "timeseriesL_2001-06-01__8", 
+            "xconform_2001-06-01__8", 
+            "ocn_averages_0011-01-01__8", 
+            "ocn_diagnostics_0011-01-01__8"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.012": [
+            "case_run_2001-06-01__12", 
+            "case_st_archive_2001-06-01__12", 
+            "timeseriesL_2001-06-01__12", 
+            "xconform_2001-06-01__12", 
+            "ocn_averages_0011-01-01__12", 
+            "ocn_diagnostics_0011-01-01__12"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.011": [
+            "case_run_2001-06-01__11", 
+            "case_st_archive_2001-06-01__11", 
+            "timeseriesL_2001-06-01__11", 
+            "xconform_2001-06-01__11", 
+            "ocn_averages_0011-01-01__11", 
+            "ocn_diagnostics_0011-01-01__11"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.003": [
+            "case_run_2001-06-01__3", 
+            "case_st_archive_2001-06-01__3", 
+            "timeseriesL_2001-06-01__3", 
+            "xconform_2001-06-01__3", 
+            "ocn_averages_0011-01-01__3", 
+            "ocn_diagnostics_0011-01-01__3"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.002": [
+            "case_run_2001-06-01__2", 
+            "case_st_archive_2001-06-01__2", 
+            "timeseriesL_2001-06-01__2", 
+            "xconform_2001-06-01__2", 
+            "ocn_averages_0011-01-01__2", 
+            "ocn_diagnostics_0011-01-01__2"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.001": [
+            "case_run_2001-06-01__1", 
+            "case_st_archive_2001-06-01__1", 
+            "timeseriesL_2001-06-01__1", 
+            "xconform_2001-06-01__1", 
+            "ocn_averages_0011-01-01__1", 
+            "ocn_diagnostics_0011-01-01__1"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.013": [
+            "case_run_2001-06-01__13", 
+            "case_st_archive_2001-06-01__13", 
+            "timeseriesL_2001-06-01__13", 
+            "xconform_2001-06-01__13", 
+            "ocn_averages_0011-01-01__13", 
+            "ocn_diagnostics_0011-01-01__13"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.007": [
+            "case_run_2001-06-01__7", 
+            "case_st_archive_2001-06-01__7", 
+            "timeseriesL_2001-06-01__7", 
+            "xconform_2001-06-01__7", 
+            "ocn_averages_0011-01-01__7", 
+            "ocn_diagnostics_0011-01-01__7"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.006": [
+            "case_run_2001-06-01__6", 
+            "case_st_archive_2001-06-01__6", 
+            "timeseriesL_2001-06-01__6", 
+            "xconform_2001-06-01__6", 
+            "ocn_averages_0011-01-01__6", 
+            "ocn_diagnostics_0011-01-01__6"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.005": [
+            "case_run_2001-06-01__5", 
+            "case_st_archive_2001-06-01__5", 
+            "timeseriesL_2001-06-01__5", 
+            "xconform_2001-06-01__5", 
+            "ocn_averages_0011-01-01__5", 
+            "ocn_diagnostics_0011-01-01__5"
+        ], 
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-futSST-pdSIC.004": [
+            "case_run_2001-06-01__4", 
+            "case_st_archive_2001-06-01__4", 
+            "timeseriesL_2001-06-01__4", 
+            "xconform_2001-06-01__4", 
+            "ocn_averages_0011-01-01__4", 
+            "ocn_diagnostics_0011-01-01__4"
+        ]
+    }
+}

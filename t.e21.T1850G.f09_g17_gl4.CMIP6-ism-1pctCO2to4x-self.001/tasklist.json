@@ -1,0 +1,14 @@
+{
+    "t.e21.T1850G.f09_g17_gl4.CMIP6-ism-1pctCO2to4x-self.001": {
+        "t.e21.T1850G.f09_g17_gl4.CMIP6-ism-1pctCO2to4x-self.001": [
+            "case_run_0142-01-01", 
+            "case_st_archive_0142-01-01", 
+            "timeseriesL_0142-01-01", 
+            "xconform_0142-01-01", 
+            "ocn_averages_0142-01-01", 
+            "ocn_diagnostics_0142-01-01", 
+            "ice_averages_0142-01-01", 
+            "ice_diagnostics_0142-01-01"
+        ]
+    }
+}

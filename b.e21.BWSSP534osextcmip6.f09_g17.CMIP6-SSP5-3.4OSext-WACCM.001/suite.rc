@@ -1,0 +1,704 @@
+#!Jinja2 
+{% set dates_atm_averages = ['2152-01-01', '2202-01-01', '2252-01-01'] %}
+{% set dates_atm_diagnostics = ['2152-01-01', '2202-01-01', '2252-01-01'] %}
+{% set dates_case_run = ['2102-01-01', '2103-01-01', '2104-01-01', '2105-01-01', '2106-01-01', '2107-01-01', '2108-01-01', '2109-01-01', '2110-01-01', '2111-01-01', '2112-01-01', '2113-01-01', '2114-01-01', '2115-01-01', '2116-01-01', '2117-01-01', '2118-01-01', '2119-01-01', '2120-01-01', '2121-01-01', '2122-01-01', '2123-01-01', '2124-01-01', '2125-01-01', '2126-01-01', '2127-01-01', '2128-01-01', '2129-01-01', '2130-01-01', '2131-01-01', '2132-01-01', '2133-01-01', '2134-01-01', '2135-01-01', '2136-01-01', '2137-01-01', '2138-01-01', '2139-01-01', '2140-01-01', '2141-01-01', '2142-01-01', '2143-01-01', '2144-01-01', '2145-01-01', '2146-01-01', '2147-01-01', '2148-01-01', '2149-01-01', '2150-01-01', '2151-01-01', '2152-01-01', '2153-01-01', '2154-01-01', '2155-01-01', '2156-01-01', '2157-01-01', '2158-01-01', '2159-01-01', '2160-01-01', '2161-01-01', '2162-01-01', '2163-01-01', '2164-01-01', '2165-01-01', '2166-01-01', '2167-01-01', '2168-01-01', '2169-01-01', '2170-01-01', '2171-01-01', '2172-01-01', '2173-01-01', '2174-01-01', '2175-01-01', '2176-01-01', '2177-01-01', '2178-01-01', '2179-01-01', '2180-01-01', '2181-01-01', '2182-01-01', '2183-01-01', '2184-01-01', '2185-01-01', '2186-01-01', '2187-01-01', '2188-01-01', '2189-01-01', '2190-01-01', '2191-01-01', '2192-01-01', '2193-01-01', '2194-01-01', '2195-01-01', '2196-01-01', '2197-01-01', '2198-01-01', '2199-01-01', '2200-01-01', '2201-01-01', '2202-01-01', '2203-01-01', '2204-01-01', '2205-01-01', '2206-01-01', '2207-01-01', '2208-01-01', '2209-01-01', '2210-01-01', '2211-01-01', '2212-01-01', '2213-01-01', '2214-01-01', '2215-01-01', '2216-01-01', '2217-01-01', '2218-01-01', '2219-01-01', '2220-01-01', '2221-01-01', '2222-01-01', '2223-01-01', '2224-01-01', '2225-01-01', '2226-01-01', '2227-01-01', '2228-01-01', '2229-01-01', '2230-01-01', '2231-01-01', '2232-01-01', '2233-01-01', '2234-01-01', '2235-01-01', '2236-01-01', '2237-01-01', '2238-01-01', '2239-01-01', '2240-01-01', '2241-01-01', '2242-01-01', '2243-01-01', '2244-01-01', '2245-01-01', '2246-01-01', '2247-01-01', '2248-01-01', '2249-01-01', '2250-01-01', '2251-01-01', '2252-01-01', '2253-01-01', '2254-01-01', '2255-01-01', '2256-01-01', '2257-01-01', '2258-01-01', '2259-01-01', '2260-01-01', '2261-01-01', '2262-01-01', '2263-01-01', '2264-01-01', '2265-01-01', '2266-01-01', '2267-01-01', '2268-01-01', '2269-01-01', '2270-01-01', '2271-01-01', '2272-01-01', '2273-01-01', '2274-01-01', '2275-01-01', '2276-01-01', '2277-01-01', '2278-01-01', '2279-01-01', '2280-01-01', '2281-01-01', '2282-01-01', '2283-01-01', '2284-01-01', '2285-01-01', '2286-01-01', '2287-01-01', '2288-01-01', '2289-01-01', '2290-01-01', '2291-01-01', '2292-01-01', '2293-01-01', '2294-01-01', '2295-01-01', '2296-01-01', '2297-01-01', '2298-01-01', '2299-01-01', '2300-01-01', '2301-01-01'] %}
+{% set dates_case_st_archive = ['2102-01-01', '2103-01-01', '2104-01-01', '2105-01-01', '2106-01-01', '2107-01-01', '2108-01-01', '2109-01-01', '2110-01-01', '2111-01-01', '2112-01-01', '2113-01-01', '2114-01-01', '2115-01-01', '2116-01-01', '2117-01-01', '2118-01-01', '2119-01-01', '2120-01-01', '2121-01-01', '2122-01-01', '2123-01-01', '2124-01-01', '2125-01-01', '2126-01-01', '2127-01-01', '2128-01-01', '2129-01-01', '2130-01-01', '2131-01-01', '2132-01-01', '2133-01-01', '2134-01-01', '2135-01-01', '2136-01-01', '2137-01-01', '2138-01-01', '2139-01-01', '2140-01-01', '2141-01-01', '2142-01-01', '2143-01-01', '2144-01-01', '2145-01-01', '2146-01-01', '2147-01-01', '2148-01-01', '2149-01-01', '2150-01-01', '2151-01-01', '2152-01-01', '2153-01-01', '2154-01-01', '2155-01-01', '2156-01-01', '2157-01-01', '2158-01-01', '2159-01-01', '2160-01-01', '2161-01-01', '2162-01-01', '2163-01-01', '2164-01-01', '2165-01-01', '2166-01-01', '2167-01-01', '2168-01-01', '2169-01-01', '2170-01-01', '2171-01-01', '2172-01-01', '2173-01-01', '2174-01-01', '2175-01-01', '2176-01-01', '2177-01-01', '2178-01-01', '2179-01-01', '2180-01-01', '2181-01-01', '2182-01-01', '2183-01-01', '2184-01-01', '2185-01-01', '2186-01-01', '2187-01-01', '2188-01-01', '2189-01-01', '2190-01-01', '2191-01-01', '2192-01-01', '2193-01-01', '2194-01-01', '2195-01-01', '2196-01-01', '2197-01-01', '2198-01-01', '2199-01-01', '2200-01-01', '2201-01-01', '2202-01-01', '2203-01-01', '2204-01-01', '2205-01-01', '2206-01-01', '2207-01-01', '2208-01-01', '2209-01-01', '2210-01-01', '2211-01-01', '2212-01-01', '2213-01-01', '2214-01-01', '2215-01-01', '2216-01-01', '2217-01-01', '2218-01-01', '2219-01-01', '2220-01-01', '2221-01-01', '2222-01-01', '2223-01-01', '2224-01-01', '2225-01-01', '2226-01-01', '2227-01-01', '2228-01-01', '2229-01-01', '2230-01-01', '2231-01-01', '2232-01-01', '2233-01-01', '2234-01-01', '2235-01-01', '2236-01-01', '2237-01-01', '2238-01-01', '2239-01-01', '2240-01-01', '2241-01-01', '2242-01-01', '2243-01-01', '2244-01-01', '2245-01-01', '2246-01-01', '2247-01-01', '2248-01-01', '2249-01-01', '2250-01-01', '2251-01-01', '2252-01-01', '2253-01-01', '2254-01-01', '2255-01-01', '2256-01-01', '2257-01-01', '2258-01-01', '2259-01-01', '2260-01-01', '2261-01-01', '2262-01-01', '2263-01-01', '2264-01-01', '2265-01-01', '2266-01-01', '2267-01-01', '2268-01-01', '2269-01-01', '2270-01-01', '2271-01-01', '2272-01-01', '2273-01-01', '2274-01-01', '2275-01-01', '2276-01-01', '2277-01-01', '2278-01-01', '2279-01-01', '2280-01-01', '2281-01-01', '2282-01-01', '2283-01-01', '2284-01-01', '2285-01-01', '2286-01-01', '2287-01-01', '2288-01-01', '2289-01-01', '2290-01-01', '2291-01-01', '2292-01-01', '2293-01-01', '2294-01-01', '2295-01-01', '2296-01-01', '2297-01-01', '2298-01-01', '2299-01-01', '2300-01-01', '2301-01-01'] %}
+{% set dates_ice_averages = ['2151-01-01', '2201-01-01', '2251-01-01', '2301-01-01'] %}
+{% set dates_ice_diagnostics = ['2151-01-01', '2201-01-01', '2251-01-01', '2301-01-01'] %}
+{% set dates_lnd_averages = ['2152-01-01', '2202-01-01', '2252-01-01'] %}
+{% set dates_lnd_diagnostics = ['2152-01-01', '2202-01-01', '2252-01-01'] %}
+{% set dates_ocn_averages = ['2151-01-01', '2201-01-01', '2251-01-01', '2301-01-01'] %}
+{% set dates_ocn_diagnostics = ['2151-01-01', '2201-01-01', '2251-01-01', '2301-01-01'] %}
+{% set dates_timeseriesL = ['2301-01-01'] %}
+{% set dates_xconform = ['2301-01-01'] %}
+{% set ATMDIAG_test_first_yr = [2101,2151,2201,2251] %}
+{% set ATMDIAG_test_nyrs = [50,50,50,50] %}
+{% set OCNDIAG_YEAR0 = [2101,2151,2201,2251] %}
+{% set OCNDIAG_YEAR1 = [2150,2200,2250,2300] %}
+{% set OCNDIAG_TSERIES_YEAR0 = [2101,2101,2101,2101] %}
+{% set OCNDIAG_TSERIES_YEAR1 = [2150,2200,2250,2300] %}
+{% set LNDDIAG_clim_first_yr_1 = [2101,2151,2201,2251] %}
+{% set LNDDIAG_trends_first_yr_1 = [2101,2151,2201,2251] %}
+{% set LNDDIAG_clim_num_yrs_1 = [50,50,50,50] %}
+{% set LNDDIAG_trends_num_yrs_1 = [50,50,50,50] %}
+{% set ICEDIAG_BEGYR_DIFF = [2101,2151,2201,2251] %}
+{% set ICEDIAG_ENDYR_DIFF = [2150,2200,2250,2300] %}
+{% set ICEDIAG_BEGYR_CONT = [2101,2151,2201,2251] %}
+{% set ICEDIAG_ENDYR_CONT = [2150,2200,2250,2300] %}
+{% set ICEDIAG_YRS_TO_AVG = [50,50,50,50] %}
+[meta] 
+title = b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001 workflow 
+[cylc]
+    [[environment]]
+        MAIL_ADDRESS=mmills@ucar.edu,strandwg@ucar.edu,mickelso@ucar.edu,expdb@cgd.ucar.edu
+    [[events]]
+        shutdown handler = cylc email-suite
+[scheduling]
+    [[dependencies]]
+        graph = """
+                    case_run_2102-01-01 => case_st_archive_2102-01-01
+                    case_st_archive_2102-01-01 => case_run_2103-01-01
+                    case_run_2103-01-01 => case_st_archive_2103-01-01
+                    case_st_archive_2103-01-01 => case_run_2104-01-01
+                    case_run_2104-01-01 => case_st_archive_2104-01-01
+                    case_st_archive_2104-01-01 => case_run_2105-01-01
+                    case_run_2105-01-01 => case_st_archive_2105-01-01
+                    case_st_archive_2105-01-01 => case_run_2106-01-01
+                    case_run_2106-01-01 => case_st_archive_2106-01-01
+                    case_st_archive_2106-01-01 => case_run_2107-01-01
+                    case_run_2107-01-01 => case_st_archive_2107-01-01
+                    case_st_archive_2107-01-01 => case_run_2108-01-01
+                    case_run_2108-01-01 => case_st_archive_2108-01-01
+                    case_st_archive_2108-01-01 => case_run_2109-01-01
+                    case_run_2109-01-01 => case_st_archive_2109-01-01
+                    case_st_archive_2109-01-01 => case_run_2110-01-01
+                    case_run_2110-01-01 => case_st_archive_2110-01-01
+                    case_st_archive_2110-01-01 => case_run_2111-01-01
+                    case_run_2111-01-01 => case_st_archive_2111-01-01
+                    case_st_archive_2111-01-01 => case_run_2112-01-01
+                    case_run_2112-01-01 => case_st_archive_2112-01-01
+                    case_st_archive_2112-01-01 => case_run_2113-01-01
+                    case_run_2113-01-01 => case_st_archive_2113-01-01
+                    case_st_archive_2113-01-01 => case_run_2114-01-01
+                    case_run_2114-01-01 => case_st_archive_2114-01-01
+                    case_st_archive_2114-01-01 => case_run_2115-01-01
+                    case_run_2115-01-01 => case_st_archive_2115-01-01
+                    case_st_archive_2115-01-01 => case_run_2116-01-01
+                    case_run_2116-01-01 => case_st_archive_2116-01-01
+                    case_st_archive_2116-01-01 => case_run_2117-01-01
+                    case_run_2117-01-01 => case_st_archive_2117-01-01
+                    case_st_archive_2117-01-01 => case_run_2118-01-01
+                    case_run_2118-01-01 => case_st_archive_2118-01-01
+                    case_st_archive_2118-01-01 => case_run_2119-01-01
+                    case_run_2119-01-01 => case_st_archive_2119-01-01
+                    case_st_archive_2119-01-01 => case_run_2120-01-01
+                    case_run_2120-01-01 => case_st_archive_2120-01-01
+                    case_st_archive_2120-01-01 => case_run_2121-01-01
+                    case_run_2121-01-01 => case_st_archive_2121-01-01
+                    case_st_archive_2121-01-01 => case_run_2122-01-01
+                    case_run_2122-01-01 => case_st_archive_2122-01-01
+                    case_st_archive_2122-01-01 => case_run_2123-01-01
+                    case_run_2123-01-01 => case_st_archive_2123-01-01
+                    case_st_archive_2123-01-01 => case_run_2124-01-01
+                    case_run_2124-01-01 => case_st_archive_2124-01-01
+                    case_st_archive_2124-01-01 => case_run_2125-01-01
+                    case_run_2125-01-01 => case_st_archive_2125-01-01
+                    case_st_archive_2125-01-01 => case_run_2126-01-01
+                    case_run_2126-01-01 => case_st_archive_2126-01-01
+                    case_st_archive_2126-01-01 => case_run_2127-01-01
+                    case_run_2127-01-01 => case_st_archive_2127-01-01
+                    case_st_archive_2127-01-01 => case_run_2128-01-01
+                    case_run_2128-01-01 => case_st_archive_2128-01-01
+                    case_st_archive_2128-01-01 => case_run_2129-01-01
+                    case_run_2129-01-01 => case_st_archive_2129-01-01
+                    case_st_archive_2129-01-01 => case_run_2130-01-01
+                    case_run_2130-01-01 => case_st_archive_2130-01-01
+                    case_st_archive_2130-01-01 => case_run_2131-01-01
+                    case_run_2131-01-01 => case_st_archive_2131-01-01
+                    case_st_archive_2131-01-01 => case_run_2132-01-01
+                    case_run_2132-01-01 => case_st_archive_2132-01-01
+                    case_st_archive_2132-01-01 => case_run_2133-01-01
+                    case_run_2133-01-01 => case_st_archive_2133-01-01
+                    case_st_archive_2133-01-01 => case_run_2134-01-01
+                    case_run_2134-01-01 => case_st_archive_2134-01-01
+                    case_st_archive_2134-01-01 => case_run_2135-01-01
+                    case_run_2135-01-01 => case_st_archive_2135-01-01
+                    case_st_archive_2135-01-01 => case_run_2136-01-01
+                    case_run_2136-01-01 => case_st_archive_2136-01-01
+                    case_st_archive_2136-01-01 => case_run_2137-01-01
+                    case_run_2137-01-01 => case_st_archive_2137-01-01
+                    case_st_archive_2137-01-01 => case_run_2138-01-01
+                    case_run_2138-01-01 => case_st_archive_2138-01-01
+                    case_st_archive_2138-01-01 => case_run_2139-01-01
+                    case_run_2139-01-01 => case_st_archive_2139-01-01
+                    case_st_archive_2139-01-01 => case_run_2140-01-01
+                    case_run_2140-01-01 => case_st_archive_2140-01-01
+                    case_st_archive_2140-01-01 => case_run_2141-01-01
+                    case_run_2141-01-01 => case_st_archive_2141-01-01
+                    case_st_archive_2141-01-01 => case_run_2142-01-01
+                    case_run_2142-01-01 => case_st_archive_2142-01-01
+                    case_st_archive_2142-01-01 => case_run_2143-01-01
+                    case_run_2143-01-01 => case_st_archive_2143-01-01
+                    case_st_archive_2143-01-01 => case_run_2144-01-01
+                    case_run_2144-01-01 => case_st_archive_2144-01-01
+                    case_st_archive_2144-01-01 => case_run_2145-01-01
+                    case_run_2145-01-01 => case_st_archive_2145-01-01
+                    case_st_archive_2145-01-01 => case_run_2146-01-01
+                    case_run_2146-01-01 => case_st_archive_2146-01-01
+                    case_st_archive_2146-01-01 => case_run_2147-01-01
+                    case_run_2147-01-01 => case_st_archive_2147-01-01
+                    case_st_archive_2147-01-01 => case_run_2148-01-01
+                    case_run_2148-01-01 => case_st_archive_2148-01-01
+                    case_st_archive_2148-01-01 => case_run_2149-01-01
+                    case_run_2149-01-01 => case_st_archive_2149-01-01
+                    case_st_archive_2149-01-01 => case_run_2150-01-01
+                    case_run_2150-01-01 => case_st_archive_2150-01-01
+                    case_st_archive_2150-01-01 => case_run_2151-01-01
+                    case_run_2151-01-01 => case_st_archive_2151-01-01
+                    case_st_archive_2151-01-01 => ocn_averages_2151-01-01 & ice_averages_2151-01-01 & case_run_2152-01-01
+                    ocn_averages_2151-01-01 => ocn_diagnostics_2151-01-01 => ocn_diagnostics_2151-01-01_post
+                    ice_averages_2151-01-01 => ice_diagnostics_2151-01-01 => ice_diagnostics_2151-01-01_post
+                    case_run_2152-01-01 => case_st_archive_2152-01-01
+                    case_st_archive_2152-01-01 => atm_averages_2152-01-01 & lnd_averages_2152-01-01 & case_run_2153-01-01
+                    atm_averages_2152-01-01 => atm_diagnostics_2152-01-01 => atm_diagnostics_2152-01-01_post
+                    lnd_averages_2152-01-01 => lnd_diagnostics_2152-01-01 => lnd_diagnostics_2152-01-01_post
+                    case_run_2153-01-01 => case_st_archive_2153-01-01
+                    case_st_archive_2153-01-01 => case_run_2154-01-01
+                    case_run_2154-01-01 => case_st_archive_2154-01-01
+                    case_st_archive_2154-01-01 => case_run_2155-01-01
+                    case_run_2155-01-01 => case_st_archive_2155-01-01
+                    case_st_archive_2155-01-01 => case_run_2156-01-01
+                    case_run_2156-01-01 => case_st_archive_2156-01-01
+                    case_st_archive_2156-01-01 => case_run_2157-01-01
+                    case_run_2157-01-01 => case_st_archive_2157-01-01
+                    case_st_archive_2157-01-01 => case_run_2158-01-01
+                    case_run_2158-01-01 => case_st_archive_2158-01-01
+                    case_st_archive_2158-01-01 => case_run_2159-01-01
+                    case_run_2159-01-01 => case_st_archive_2159-01-01
+                    case_st_archive_2159-01-01 => case_run_2160-01-01
+                    case_run_2160-01-01 => case_st_archive_2160-01-01
+                    case_st_archive_2160-01-01 => case_run_2161-01-01
+                    case_run_2161-01-01 => case_st_archive_2161-01-01
+                    case_st_archive_2161-01-01 => case_run_2162-01-01
+                    case_run_2162-01-01 => case_st_archive_2162-01-01
+                    case_st_archive_2162-01-01 => case_run_2163-01-01
+                    case_run_2163-01-01 => case_st_archive_2163-01-01
+                    case_st_archive_2163-01-01 => case_run_2164-01-01
+                    case_run_2164-01-01 => case_st_archive_2164-01-01
+                    case_st_archive_2164-01-01 => case_run_2165-01-01
+                    case_run_2165-01-01 => case_st_archive_2165-01-01
+                    case_st_archive_2165-01-01 => case_run_2166-01-01
+                    case_run_2166-01-01 => case_st_archive_2166-01-01
+                    case_st_archive_2166-01-01 => case_run_2167-01-01
+                    case_run_2167-01-01 => case_st_archive_2167-01-01
+                    case_st_archive_2167-01-01 => case_run_2168-01-01
+                    case_run_2168-01-01 => case_st_archive_2168-01-01
+                    case_st_archive_2168-01-01 => case_run_2169-01-01
+                    case_run_2169-01-01 => case_st_archive_2169-01-01
+                    case_st_archive_2169-01-01 => case_run_2170-01-01
+                    case_run_2170-01-01 => case_st_archive_2170-01-01
+                    case_st_archive_2170-01-01 => case_run_2171-01-01
+                    case_run_2171-01-01 => case_st_archive_2171-01-01
+                    case_st_archive_2171-01-01 => case_run_2172-01-01
+                    case_run_2172-01-01 => case_st_archive_2172-01-01
+                    case_st_archive_2172-01-01 => case_run_2173-01-01
+                    case_run_2173-01-01 => case_st_archive_2173-01-01
+                    case_st_archive_2173-01-01 => case_run_2174-01-01
+                    case_run_2174-01-01 => case_st_archive_2174-01-01
+                    case_st_archive_2174-01-01 => case_run_2175-01-01
+                    case_run_2175-01-01 => case_st_archive_2175-01-01
+                    case_st_archive_2175-01-01 => case_run_2176-01-01
+                    case_run_2176-01-01 => case_st_archive_2176-01-01
+                    case_st_archive_2176-01-01 => case_run_2177-01-01
+                    case_run_2177-01-01 => case_st_archive_2177-01-01
+                    case_st_archive_2177-01-01 => case_run_2178-01-01
+                    case_run_2178-01-01 => case_st_archive_2178-01-01
+                    case_st_archive_2178-01-01 => case_run_2179-01-01
+                    case_run_2179-01-01 => case_st_archive_2179-01-01
+                    case_st_archive_2179-01-01 => case_run_2180-01-01
+                    case_run_2180-01-01 => case_st_archive_2180-01-01
+                    case_st_archive_2180-01-01 => case_run_2181-01-01
+                    case_run_2181-01-01 => case_st_archive_2181-01-01
+                    case_st_archive_2181-01-01 => case_run_2182-01-01
+                    case_run_2182-01-01 => case_st_archive_2182-01-01
+                    case_st_archive_2182-01-01 => case_run_2183-01-01
+                    case_run_2183-01-01 => case_st_archive_2183-01-01
+                    case_st_archive_2183-01-01 => case_run_2184-01-01
+                    case_run_2184-01-01 => case_st_archive_2184-01-01
+                    case_st_archive_2184-01-01 => case_run_2185-01-01
+                    case_run_2185-01-01 => case_st_archive_2185-01-01
+                    case_st_archive_2185-01-01 => case_run_2186-01-01
+                    case_run_2186-01-01 => case_st_archive_2186-01-01
+                    case_st_archive_2186-01-01 => case_run_2187-01-01
+                    case_run_2187-01-01 => case_st_archive_2187-01-01
+                    case_st_archive_2187-01-01 => case_run_2188-01-01
+                    case_run_2188-01-01 => case_st_archive_2188-01-01
+                    case_st_archive_2188-01-01 => case_run_2189-01-01
+                    case_run_2189-01-01 => case_st_archive_2189-01-01
+                    case_st_archive_2189-01-01 => case_run_2190-01-01
+                    case_run_2190-01-01 => case_st_archive_2190-01-01
+                    case_st_archive_2190-01-01 => case_run_2191-01-01
+                    case_run_2191-01-01 => case_st_archive_2191-01-01
+                    case_st_archive_2191-01-01 => case_run_2192-01-01
+                    case_run_2192-01-01 => case_st_archive_2192-01-01
+                    case_st_archive_2192-01-01 => case_run_2193-01-01
+                    case_run_2193-01-01 => case_st_archive_2193-01-01
+                    case_st_archive_2193-01-01 => case_run_2194-01-01
+                    case_run_2194-01-01 => case_st_archive_2194-01-01
+                    case_st_archive_2194-01-01 => case_run_2195-01-01
+                    case_run_2195-01-01 => case_st_archive_2195-01-01
+                    case_st_archive_2195-01-01 => case_run_2196-01-01
+                    case_run_2196-01-01 => case_st_archive_2196-01-01
+                    case_st_archive_2196-01-01 => case_run_2197-01-01
+                    case_run_2197-01-01 => case_st_archive_2197-01-01
+                    case_st_archive_2197-01-01 => case_run_2198-01-01
+                    case_run_2198-01-01 => case_st_archive_2198-01-01
+                    case_st_archive_2198-01-01 => case_run_2199-01-01
+                    case_run_2199-01-01 => case_st_archive_2199-01-01
+                    case_st_archive_2199-01-01 => case_run_2200-01-01
+                    case_run_2200-01-01 => case_st_archive_2200-01-01
+                    case_st_archive_2200-01-01 => case_run_2201-01-01
+                    case_run_2201-01-01 => case_st_archive_2201-01-01
+                    case_st_archive_2201-01-01 => ocn_averages_2201-01-01 & ice_averages_2201-01-01 & case_run_2202-01-01
+                    ocn_averages_2201-01-01 => ocn_diagnostics_2201-01-01 => ocn_diagnostics_2201-01-01_post
+                    ice_averages_2201-01-01 => ice_diagnostics_2201-01-01 => ice_diagnostics_2201-01-01_post
+                    case_run_2202-01-01 => case_st_archive_2202-01-01
+                    case_st_archive_2202-01-01 => atm_averages_2202-01-01 & lnd_averages_2202-01-01 & case_run_2203-01-01
+                    atm_averages_2202-01-01 => atm_diagnostics_2202-01-01 => atm_diagnostics_2202-01-01_post
+                    lnd_averages_2202-01-01 => lnd_diagnostics_2202-01-01 => lnd_diagnostics_2202-01-01_post
+                    case_run_2203-01-01 => case_st_archive_2203-01-01
+                    case_st_archive_2203-01-01 => case_run_2204-01-01
+                    case_run_2204-01-01 => case_st_archive_2204-01-01
+                    case_st_archive_2204-01-01 => case_run_2205-01-01
+                    case_run_2205-01-01 => case_st_archive_2205-01-01
+                    case_st_archive_2205-01-01 => case_run_2206-01-01
+                    case_run_2206-01-01 => case_st_archive_2206-01-01
+                    case_st_archive_2206-01-01 => case_run_2207-01-01
+                    case_run_2207-01-01 => case_st_archive_2207-01-01
+                    case_st_archive_2207-01-01 => case_run_2208-01-01
+                    case_run_2208-01-01 => case_st_archive_2208-01-01
+                    case_st_archive_2208-01-01 => case_run_2209-01-01
+                    case_run_2209-01-01 => case_st_archive_2209-01-01
+                    case_st_archive_2209-01-01 => case_run_2210-01-01
+                    case_run_2210-01-01 => case_st_archive_2210-01-01
+                    case_st_archive_2210-01-01 => case_run_2211-01-01
+                    case_run_2211-01-01 => case_st_archive_2211-01-01
+                    case_st_archive_2211-01-01 => case_run_2212-01-01
+                    case_run_2212-01-01 => case_st_archive_2212-01-01
+                    case_st_archive_2212-01-01 => case_run_2213-01-01
+                    case_run_2213-01-01 => case_st_archive_2213-01-01
+                    case_st_archive_2213-01-01 => case_run_2214-01-01
+                    case_run_2214-01-01 => case_st_archive_2214-01-01
+                    case_st_archive_2214-01-01 => case_run_2215-01-01
+                    case_run_2215-01-01 => case_st_archive_2215-01-01
+                    case_st_archive_2215-01-01 => case_run_2216-01-01
+                    case_run_2216-01-01 => case_st_archive_2216-01-01
+                    case_st_archive_2216-01-01 => case_run_2217-01-01
+                    case_run_2217-01-01 => case_st_archive_2217-01-01
+                    case_st_archive_2217-01-01 => case_run_2218-01-01
+                    case_run_2218-01-01 => case_st_archive_2218-01-01
+                    case_st_archive_2218-01-01 => case_run_2219-01-01
+                    case_run_2219-01-01 => case_st_archive_2219-01-01
+                    case_st_archive_2219-01-01 => case_run_2220-01-01
+                    case_run_2220-01-01 => case_st_archive_2220-01-01
+                    case_st_archive_2220-01-01 => case_run_2221-01-01
+                    case_run_2221-01-01 => case_st_archive_2221-01-01
+                    case_st_archive_2221-01-01 => case_run_2222-01-01
+                    case_run_2222-01-01 => case_st_archive_2222-01-01
+                    case_st_archive_2222-01-01 => case_run_2223-01-01
+                    case_run_2223-01-01 => case_st_archive_2223-01-01
+                    case_st_archive_2223-01-01 => case_run_2224-01-01
+                    case_run_2224-01-01 => case_st_archive_2224-01-01
+                    case_st_archive_2224-01-01 => case_run_2225-01-01
+                    case_run_2225-01-01 => case_st_archive_2225-01-01
+                    case_st_archive_2225-01-01 => case_run_2226-01-01
+                    case_run_2226-01-01 => case_st_archive_2226-01-01
+                    case_st_archive_2226-01-01 => case_run_2227-01-01
+                    case_run_2227-01-01 => case_st_archive_2227-01-01
+                    case_st_archive_2227-01-01 => case_run_2228-01-01
+                    case_run_2228-01-01 => case_st_archive_2228-01-01
+                    case_st_archive_2228-01-01 => case_run_2229-01-01
+                    case_run_2229-01-01 => case_st_archive_2229-01-01
+                    case_st_archive_2229-01-01 => case_run_2230-01-01
+                    case_run_2230-01-01 => case_st_archive_2230-01-01
+                    case_st_archive_2230-01-01 => case_run_2231-01-01
+                    case_run_2231-01-01 => case_st_archive_2231-01-01
+                    case_st_archive_2231-01-01 => case_run_2232-01-01
+                    case_run_2232-01-01 => case_st_archive_2232-01-01
+                    case_st_archive_2232-01-01 => case_run_2233-01-01
+                    case_run_2233-01-01 => case_st_archive_2233-01-01
+                    case_st_archive_2233-01-01 => case_run_2234-01-01
+                    case_run_2234-01-01 => case_st_archive_2234-01-01
+                    case_st_archive_2234-01-01 => case_run_2235-01-01
+                    case_run_2235-01-01 => case_st_archive_2235-01-01
+                    case_st_archive_2235-01-01 => case_run_2236-01-01
+                    case_run_2236-01-01 => case_st_archive_2236-01-01
+                    case_st_archive_2236-01-01 => case_run_2237-01-01
+                    case_run_2237-01-01 => case_st_archive_2237-01-01
+                    case_st_archive_2237-01-01 => case_run_2238-01-01
+                    case_run_2238-01-01 => case_st_archive_2238-01-01
+                    case_st_archive_2238-01-01 => case_run_2239-01-01
+                    case_run_2239-01-01 => case_st_archive_2239-01-01
+                    case_st_archive_2239-01-01 => case_run_2240-01-01
+                    case_run_2240-01-01 => case_st_archive_2240-01-01
+                    case_st_archive_2240-01-01 => case_run_2241-01-01
+                    case_run_2241-01-01 => case_st_archive_2241-01-01
+                    case_st_archive_2241-01-01 => case_run_2242-01-01
+                    case_run_2242-01-01 => case_st_archive_2242-01-01
+                    case_st_archive_2242-01-01 => case_run_2243-01-01
+                    case_run_2243-01-01 => case_st_archive_2243-01-01
+                    case_st_archive_2243-01-01 => case_run_2244-01-01
+                    case_run_2244-01-01 => case_st_archive_2244-01-01
+                    case_st_archive_2244-01-01 => case_run_2245-01-01
+                    case_run_2245-01-01 => case_st_archive_2245-01-01
+                    case_st_archive_2245-01-01 => case_run_2246-01-01
+                    case_run_2246-01-01 => case_st_archive_2246-01-01
+                    case_st_archive_2246-01-01 => case_run_2247-01-01
+                    case_run_2247-01-01 => case_st_archive_2247-01-01
+                    case_st_archive_2247-01-01 => case_run_2248-01-01
+                    case_run_2248-01-01 => case_st_archive_2248-01-01
+                    case_st_archive_2248-01-01 => case_run_2249-01-01
+                    case_run_2249-01-01 => case_st_archive_2249-01-01
+                    case_st_archive_2249-01-01 => case_run_2250-01-01
+                    case_run_2250-01-01 => case_st_archive_2250-01-01
+                    case_st_archive_2250-01-01 => case_run_2251-01-01
+                    case_run_2251-01-01 => case_st_archive_2251-01-01
+                    case_st_archive_2251-01-01 => ocn_averages_2251-01-01 & ice_averages_2251-01-01 & case_run_2252-01-01
+                    ocn_averages_2251-01-01 => ocn_diagnostics_2251-01-01 => ocn_diagnostics_2251-01-01_post
+                    ice_averages_2251-01-01 => ice_diagnostics_2251-01-01 => ice_diagnostics_2251-01-01_post
+                    case_run_2252-01-01 => case_st_archive_2252-01-01
+                    case_st_archive_2252-01-01 => atm_averages_2252-01-01 & lnd_averages_2252-01-01 & case_run_2253-01-01
+                    atm_averages_2252-01-01 => atm_diagnostics_2252-01-01 => atm_diagnostics_2252-01-01_post
+                    lnd_averages_2252-01-01 => lnd_diagnostics_2252-01-01 => lnd_diagnostics_2252-01-01_post
+                    case_run_2253-01-01 => case_st_archive_2253-01-01
+                    case_st_archive_2253-01-01 => case_run_2254-01-01
+                    case_run_2254-01-01 => case_st_archive_2254-01-01
+                    case_st_archive_2254-01-01 => case_run_2255-01-01
+                    case_run_2255-01-01 => case_st_archive_2255-01-01
+                    case_st_archive_2255-01-01 => case_run_2256-01-01
+                    case_run_2256-01-01 => case_st_archive_2256-01-01
+                    case_st_archive_2256-01-01 => case_run_2257-01-01
+                    case_run_2257-01-01 => case_st_archive_2257-01-01
+                    case_st_archive_2257-01-01 => case_run_2258-01-01
+                    case_run_2258-01-01 => case_st_archive_2258-01-01
+                    case_st_archive_2258-01-01 => case_run_2259-01-01
+                    case_run_2259-01-01 => case_st_archive_2259-01-01
+                    case_st_archive_2259-01-01 => case_run_2260-01-01
+                    case_run_2260-01-01 => case_st_archive_2260-01-01
+                    case_st_archive_2260-01-01 => case_run_2261-01-01
+                    case_run_2261-01-01 => case_st_archive_2261-01-01
+                    case_st_archive_2261-01-01 => case_run_2262-01-01
+                    case_run_2262-01-01 => case_st_archive_2262-01-01
+                    case_st_archive_2262-01-01 => case_run_2263-01-01
+                    case_run_2263-01-01 => case_st_archive_2263-01-01
+                    case_st_archive_2263-01-01 => case_run_2264-01-01
+                    case_run_2264-01-01 => case_st_archive_2264-01-01
+                    case_st_archive_2264-01-01 => case_run_2265-01-01
+                    case_run_2265-01-01 => case_st_archive_2265-01-01
+                    case_st_archive_2265-01-01 => case_run_2266-01-01
+                    case_run_2266-01-01 => case_st_archive_2266-01-01
+                    case_st_archive_2266-01-01 => case_run_2267-01-01
+                    case_run_2267-01-01 => case_st_archive_2267-01-01
+                    case_st_archive_2267-01-01 => case_run_2268-01-01
+                    case_run_2268-01-01 => case_st_archive_2268-01-01
+                    case_st_archive_2268-01-01 => case_run_2269-01-01
+                    case_run_2269-01-01 => case_st_archive_2269-01-01
+                    case_st_archive_2269-01-01 => case_run_2270-01-01
+                    case_run_2270-01-01 => case_st_archive_2270-01-01
+                    case_st_archive_2270-01-01 => case_run_2271-01-01
+                    case_run_2271-01-01 => case_st_archive_2271-01-01
+                    case_st_archive_2271-01-01 => case_run_2272-01-01
+                    case_run_2272-01-01 => case_st_archive_2272-01-01
+                    case_st_archive_2272-01-01 => case_run_2273-01-01
+                    case_run_2273-01-01 => case_st_archive_2273-01-01
+                    case_st_archive_2273-01-01 => case_run_2274-01-01
+                    case_run_2274-01-01 => case_st_archive_2274-01-01
+                    case_st_archive_2274-01-01 => case_run_2275-01-01
+                    case_run_2275-01-01 => case_st_archive_2275-01-01
+                    case_st_archive_2275-01-01 => case_run_2276-01-01
+                    case_run_2276-01-01 => case_st_archive_2276-01-01
+                    case_st_archive_2276-01-01 => case_run_2277-01-01
+                    case_run_2277-01-01 => case_st_archive_2277-01-01
+                    case_st_archive_2277-01-01 => case_run_2278-01-01
+                    case_run_2278-01-01 => case_st_archive_2278-01-01
+                    case_st_archive_2278-01-01 => case_run_2279-01-01
+                    case_run_2279-01-01 => case_st_archive_2279-01-01
+                    case_st_archive_2279-01-01 => case_run_2280-01-01
+                    case_run_2280-01-01 => case_st_archive_2280-01-01
+                    case_st_archive_2280-01-01 => case_run_2281-01-01
+                    case_run_2281-01-01 => case_st_archive_2281-01-01
+                    case_st_archive_2281-01-01 => case_run_2282-01-01
+                    case_run_2282-01-01 => case_st_archive_2282-01-01
+                    case_st_archive_2282-01-01 => case_run_2283-01-01
+                    case_run_2283-01-01 => case_st_archive_2283-01-01
+                    case_st_archive_2283-01-01 => case_run_2284-01-01
+                    case_run_2284-01-01 => case_st_archive_2284-01-01
+                    case_st_archive_2284-01-01 => case_run_2285-01-01
+                    case_run_2285-01-01 => case_st_archive_2285-01-01
+                    case_st_archive_2285-01-01 => case_run_2286-01-01
+                    case_run_2286-01-01 => case_st_archive_2286-01-01
+                    case_st_archive_2286-01-01 => case_run_2287-01-01
+                    case_run_2287-01-01 => case_st_archive_2287-01-01
+                    case_st_archive_2287-01-01 => case_run_2288-01-01
+                    case_run_2288-01-01 => case_st_archive_2288-01-01
+                    case_st_archive_2288-01-01 => case_run_2289-01-01
+                    case_run_2289-01-01 => case_st_archive_2289-01-01
+                    case_st_archive_2289-01-01 => case_run_2290-01-01
+                    case_run_2290-01-01 => case_st_archive_2290-01-01
+                    case_st_archive_2290-01-01 => case_run_2291-01-01
+                    case_run_2291-01-01 => case_st_archive_2291-01-01
+                    case_st_archive_2291-01-01 => case_run_2292-01-01
+                    case_run_2292-01-01 => case_st_archive_2292-01-01
+                    case_st_archive_2292-01-01 => case_run_2293-01-01
+                    case_run_2293-01-01 => case_st_archive_2293-01-01
+                    case_st_archive_2293-01-01 => case_run_2294-01-01
+                    case_run_2294-01-01 => case_st_archive_2294-01-01
+                    case_st_archive_2294-01-01 => case_run_2295-01-01
+                    case_run_2295-01-01 => case_st_archive_2295-01-01
+                    case_st_archive_2295-01-01 => case_run_2296-01-01
+                    case_run_2296-01-01 => case_st_archive_2296-01-01
+                    case_st_archive_2296-01-01 => case_run_2297-01-01
+                    case_run_2297-01-01 => case_st_archive_2297-01-01
+                    case_st_archive_2297-01-01 => case_run_2298-01-01
+                    case_run_2298-01-01 => case_st_archive_2298-01-01
+                    case_st_archive_2298-01-01 => case_run_2299-01-01
+                    case_run_2299-01-01 => case_st_archive_2299-01-01
+                    case_st_archive_2299-01-01 => case_run_2300-01-01
+                    case_run_2300-01-01 => case_st_archive_2300-01-01
+                    case_st_archive_2300-01-01 => case_run_2301-01-01
+                    case_run_2301-01-01 => case_st_archive_2301-01-01
+                    case_st_archive_2301-01-01 => timeseriesL_2301-01-01 & ocn_averages_2301-01-01 & ice_averages_2301-01-01
+                    timeseriesL_2301-01-01 => xconform_2301-01-01
+                    ocn_averages_2301-01-01 => ocn_diagnostics_2301-01-01 => ocn_diagnostics_2301-01-01_post
+                    ice_averages_2301-01-01 => ice_diagnostics_2301-01-01 => ice_diagnostics_2301-01-01_post
+               """
+[runtime]
+    [[root]]
+        [[[environment]]]
+        {% for i in range(0,dates_atm_averages|length) %}
+        [[atm_averages_{{dates_atm_averages[i]}} ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/; ./pp_config --set ATMDIAG_test_first_yr={{ATMDIAG_test_first_yr[i]}}; ./pp_config --set ATMDIAG_test_nyrs={{ATMDIAG_test_nyrs[i]}};  /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/atm_averages
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_atm_diagnostics|length) %}
+        [[atm_diagnostics_{{dates_atm_diagnostics[i]}} ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001; /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/atm_diagnostics
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_atm_diagnostics|length) %}
+        [[atm_diagnostics_{{dates_atm_diagnostics[i]}}_post ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/; /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_case_run|length) %}
+        [[case_run_{{dates_case_run[i]}} ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001; /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/case.run.cylc
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+                execution retry delays = PT30S, PT120S, PT600S
+        [[[directives]]]
+                -A = CESM0005
+                -q = economy
+                -N = ssp534-over-ext-WACCM
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=99:ncpus=36:mpiprocs=12:ompthreads=3
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_case_st_archive|length) %}
+        [[case_st_archive_{{dates_case_st_archive[i]}} ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001; /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/case.st_archive.cylc
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT1H
+        [[[directives]]]
+                -A = CESM0005
+                -q = regular
+                -N = st_archive.b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001
+                -r = n
+                -j = oe
+                -S = /bin/bash
+                -l = select=1:ncpus=1:mpiprocs=1:ompthreads=1
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ice_averages|length) %}
+        [[ice_averages_{{dates_ice_averages[i]}} ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/; ./pp_config --set ICEDIAG_BEGYR_DIFF={{ICEDIAG_BEGYR_DIFF[i]}}; ./pp_config --set ICEDIAG_ENDYR_DIFF={{ICEDIAG_ENDYR_DIFF[i]}}; ./pp_config --set ICEDIAG_BEGYR_CONT={{ICEDIAG_BEGYR_CONT[i]}}; ./pp_config --set ICEDIAG_ENDYR_CONT={{ICEDIAG_ENDYR_CONT[i]}}; ./pp_config --set ICEDIAG_YRS_TO_AVG={{ICEDIAG_YRS_TO_AVG[i]}};  /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/ice_averages
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ice_diagnostics|length) %}
+        [[ice_diagnostics_{{dates_ice_diagnostics[i]}} ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001; /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/ice_diagnostics
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=8:mpiprocs=8
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ice_diagnostics|length) %}
+        [[ice_diagnostics_{{dates_ice_diagnostics[i]}}_post ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/; /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_lnd_averages|length) %}
+        [[lnd_averages_{{dates_lnd_averages[i]}} ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/; ./pp_config --set LNDDIAG_clim_first_yr_1={{LNDDIAG_clim_first_yr_1[i]}}; ./pp_config --set LNDDIAG_trends_first_yr_1={{LNDDIAG_trends_first_yr_1[i]}}; ./pp_config --set LNDDIAG_clim_num_yrs_1={{LNDDIAG_clim_num_yrs_1[i]}}; ./pp_config --set LNDDIAG_trends_num_yrs_1={{LNDDIAG_trends_num_yrs_1[i]}};  /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/lnd_averages
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=18:mpiprocs=18
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_lnd_diagnostics|length) %}
+        [[lnd_diagnostics_{{dates_lnd_diagnostics[i]}} ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001; /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/lnd_diagnostics
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=16:mpiprocs=16
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_lnd_diagnostics|length) %}
+        [[lnd_diagnostics_{{dates_lnd_diagnostics[i]}}_post ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/; /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_averages|length) %}
+        [[ocn_averages_{{dates_ocn_averages[i]}} ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/; ./pp_config --set OCNDIAG_YEAR0={{OCNDIAG_YEAR0[i]}}; ./pp_config --set OCNDIAG_YEAR1={{OCNDIAG_YEAR1[i]}}; ./pp_config --set OCNDIAG_TSERIES_YEAR0={{OCNDIAG_TSERIES_YEAR0[i]}}; ./pp_config --set OCNDIAG_TSERIES_YEAR1={{OCNDIAG_TSERIES_YEAR1[i]}};  /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/ocn_averages
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = averages
+                -q = regular
+                -l = select=4:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_diagnostics|length) %}
+        [[ocn_diagnostics_{{dates_ocn_diagnostics[i]}} ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001; /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/ocn_diagnostics
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = diagnostics
+                -q = regular
+                -l = select=1:ncpus=16:mpiprocs=16
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_ocn_diagnostics|length) %}
+        [[ocn_diagnostics_{{dates_ocn_diagnostics[i]}}_post ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/; /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/copy_html
+        {% endfor %}
+
+
+        {% for i in range(0,dates_timeseriesL|length) %}
+        [[timeseriesL_{{dates_timeseriesL[i]}} ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001; /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/timeseriesL
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = timeseries
+                -q = regular
+                -l = select=64:ncpus=9:mpiprocs=9
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+
+        {% for i in range(0,dates_xconform|length) %}
+        [[xconform_{{dates_xconform[i]}} ]]
+        script = cd /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001; /glade/work/cmip6/cases/ScenarioMIP_WACCM/b.e21.BWSSP534osextcmip6.f09_g17.CMIP6-SSP5-3.4OSext-WACCM.001/postprocess/xconform
+        [[[job]]]
+                batch system = pbs
+                execution time limit = PT12H
+        [[[directives]]]
+                -N = xconform
+                -q = regular
+                -l = select=64:ncpus=4:mpiprocs=4
+                -A = CESM0005
+        [[[events]]]
+                started handler = cylc email-suite
+                succeeded handler = cylc email-suite
+                failed handler = cylc email-suite
+        {% endfor %}
+
+

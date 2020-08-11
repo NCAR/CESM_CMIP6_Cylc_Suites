@@ -1,0 +1,18 @@
+{
+    "f.e21.QPC6.f09_f09_mg17.CFMIP-aqua-p4K.001": {
+        "f.e21.QPC6.f09_f09_mg17.CFMIP-aqua-p4K.001": [
+            "case_run_0003-01-01", 
+            "case_st_archive_0003-01-01", 
+            "case_run_0005-01-01", 
+            "case_st_archive_0005-01-01", 
+            "case_run_0007-01-01", 
+            "case_st_archive_0007-01-01", 
+            "case_run_0009-01-01", 
+            "case_st_archive_0009-01-01", 
+            "case_run_0011-01-01", 
+            "case_st_archive_0011-01-01", 
+            "timeseriesL_0011-01-01", 
+            "xconform_0011-01-01"
+        ]
+    }
+}

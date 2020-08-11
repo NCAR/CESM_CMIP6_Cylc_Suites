@@ -1,0 +1,26 @@
+{
+    "i.e21.IHIST.f09_g17.CMIP6-land-noLu.001": {
+        "i.e21.IHIST.f09_g17.CMIP6-land-noLu.001": [
+            "case_run_1852-01-01", 
+            "case_st_archive_1852-01-01", 
+            "atm_averages_0005-01-01", 
+            "atm_diagnostics_0005-01-01", 
+            "ocn_averages_0005-01-01", 
+            "ocn_diagnostics_0005-01-01", 
+            "lnd_averages_0005-01-01", 
+            "lnd_diagnostics_0005-01-01", 
+            "ice_averages_0005-01-01", 
+            "ice_diagnostics_0005-01-01", 
+            "case_run_1854-01-01", 
+            "case_st_archive_1854-01-01", 
+            "case_run_1856-01-01", 
+            "case_st_archive_1856-01-01", 
+            "case_run_1858-01-01", 
+            "case_st_archive_1858-01-01", 
+            "case_run_1860-01-01", 
+            "case_st_archive_1860-01-01", 
+            "timeseriesL_1860-01-01", 
+            "xconform_1860-01-01"
+        ]
+    }
+}

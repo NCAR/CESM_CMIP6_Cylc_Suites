@@ -1,0 +1,20 @@
+{
+    "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-AMIP.009": {
+        "f.e21.FHIST_BGC.f09_f09_mg17.CMIP6-AMIP.009": [
+            "case_run_1960-01-01", 
+            "case_st_archive_1960-01-01", 
+            "case_run_1970-01-01", 
+            "case_st_archive_1970-01-01", 
+            "case_run_1980-01-01", 
+            "case_st_archive_1980-01-01", 
+            "case_run_1990-01-01", 
+            "case_st_archive_1990-01-01", 
+            "case_run_2000-01-01", 
+            "case_st_archive_2000-01-01", 
+            "case_run_2010-01-01", 
+            "case_st_archive_2010-01-01", 
+            "timeseriesL_2010-01-01", 
+            "xconform_2010-01-01"
+        ]
+    }
+}
